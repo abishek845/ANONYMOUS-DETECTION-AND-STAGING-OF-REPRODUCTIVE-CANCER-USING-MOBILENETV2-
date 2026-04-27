@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gynecological & Testicular Cancer Prediction AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Nunito:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f0f4f8;--bg2:#e8eef5;--surface:#fff;--surface2:#f5f8fc;
+  --border:#d0dce8;--border2:#b8cede;
+  --accent:#1a6fa8;--accent-light:#e8f2fb;
+  --accent2:#0e9a72;--accent2-light:#e6f7f2;
+  --danger:#d94060;--danger-light:#fdeef2;
+  --warn:#c97d15;--warn-light:#fdf3e4;
+  --text:#1a2535;--text2:#3d5166;--muted:#6b8299;--muted2:#98b0c4;
+  --shadow:0 2px 12px rgba(26,111,168,.08);
+  --shadow-md:0 4px 24px rgba(26,111,168,.13);
+  --shadow-lg:0 8px 40px rgba(26,111,168,.18);
+  --r:12px;--rsm:8px;--rlg:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+.shell{display:flex;min-height:100vh;}
+.sidebar{width:68px;background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:2px;
+  position:fixed;top:0;left:0;height:100vh;z-index:100;
+  transition:width .32s cubic-bezier(.4,0,.2,1);overflow:hidden;box-shadow:var(--shadow);}
+.sidebar:hover{width:234px;}
+.logo-mark{width:40px;height:40px;min-width:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#2892d7);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:14px;color:#fff;
+  box-shadow:0 4px 12px rgba(26,111,168,.3);margin-bottom:16px;}
+.nav-item{width:100%;display:flex;align-items:center;gap:13px;padding:11px 13px;cursor:pointer;
+  color:var(--muted);transition:all .2s;white-space:nowrap;border-left:3px solid transparent;}
+.nav-item:hover,.nav-item.active{color:var(--accent);background:var(--accent-light);border-left-color:var(--accent);}
+.nav-item svg{min-width:22px;width:22px;height:22px;flex-shrink:0;}
+.nav-item span{font-size:13px;font-weight:600;opacity:0;transition:opacity .12s .04s;}
+.sidebar:hover .nav-item span{opacity:1;}
+.nav-sep{width:36px;height:1px;background:var(--border);margin:5px 0;}
+.main{margin-left:68px;flex:1;display:flex;flex-direction:column;}
+.topbar{background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  padding:0 26px;height:58px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;box-shadow:var(--shadow);}
+.topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--accent);line-height:1.2;}
+.topbar-sub{font-size:10.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.status-pill{display:flex;align-items:center;gap:6px;background:var(--accent2-light);
+  border:1px solid rgba(14,154,114,.2);padding:4px 11px;border-radius:20px;
+  font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--accent2);}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#2892d7);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;
+  box-shadow:0 2px 8px rgba(26,111,168,.25);cursor:pointer;}
+.content{padding:22px 26px;flex:1;}
+.sec-title{font-family:'Playfair Display',serif;font-weight:700;font-size:12.5px;
+  text-transform:uppercase;letter-spacing:.15em;color:var(--muted);
+  margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.dash-hero{width:100%;height:158px;border-radius:var(--rlg);overflow:hidden;margin-bottom:22px;
+  position:relative;background:linear-gradient(135deg,#1a6fa8 0%,#2892d7 45%,#1a9a8a 100%);
+  box-shadow:var(--shadow-md);}
+.dash-hero-mesh{position:absolute;inset:0;
+  background-image:radial-gradient(ellipse at 20% 60%,rgba(255,255,255,.13) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 25%,rgba(0,255,180,.12) 0%,transparent 55%);}
+.dash-hero-grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px;}
+.dash-hero-dna{position:absolute;right:36px;top:50%;transform:translateY(-50%);
+  opacity:.13;font-size:110px;pointer-events:none;user-select:none;}
+.dash-hero-content{position:relative;z-index:2;padding:26px 30px;height:100%;display:flex;flex-direction:column;justify-content:center;}
+.dash-hero-title{font-family:'Playfair Display',serif;font-weight:900;font-size:21px;color:#fff;line-height:1.25;margin-bottom:5px;}
+.dash-hero-sub{font-size:12px;color:rgba(255,255,255,.75);}
+.dash-hero-badge{display:inline-flex;align-items:center;gap:6px;margin-top:9px;width:fit-content;
+  background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.24);
+  border-radius:20px;padding:4px 12px;font-size:11px;color:#fff;font-family:'JetBrains Mono',monospace;}
+.dash-action-row{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;margin-bottom:22px;}
+.dab{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);
+  padding:16px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;
+  cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;color:var(--text2);}
+.dab::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;border-radius:calc(var(--r) - 1px);}
+.dab:hover::before{opacity:1;}
+.dab:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.dab-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;transition:transform .2s;}
+.dab:hover .dab-icon{transform:scale(1.1);}
+.dab-label{font-size:11px;font-weight:700;text-align:center;z-index:1;line-height:1.3;}
+.dab.t::before{background:linear-gradient(135deg,var(--accent-light),transparent);}
+.dab.t:hover{border-color:var(--accent);}
+.dab.t .dab-icon{background:var(--accent-light);color:var(--accent);}
+.dab.g::before{background:linear-gradient(135deg,var(--accent2-light),transparent);}
+.dab.g:hover{border-color:var(--accent2);}
+.dab.g .dab-icon{background:var(--accent2-light);color:var(--accent2);}
+.dab.o::before{background:linear-gradient(135deg,var(--warn-light),transparent);}
+.dab.o:hover{border-color:var(--warn);}
+.dab.o .dab-icon{background:var(--warn-light);color:var(--warn);}
+.dab.r::before{background:linear-gradient(135deg,var(--danger-light),transparent);}
+.dab.r:hover{border-color:var(--danger);}
+.dab.r .dab-icon{background:var(--danger-light);color:var(--danger);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.card-header{padding:13px 19px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface2);}
+.card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:13.5px;color:var(--text);}
+.card-body{padding:17px 19px;}
+.card-tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;
+  background:var(--accent-light);color:var(--accent);border:1px solid rgba(26,111,168,.15);}
+.ring-wrap{display:flex;justify-content:center;}
+.progress-ring{position:relative;width:110px;height:110px;}
+.progress-ring svg{transform:rotate(-90deg);}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:20px;color:var(--accent);}
+.ring-sub{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted);font-weight:400;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;}
+.fg input,.fg select,.fg textarea{background:var(--surface2);border:1.5px solid var(--border);color:var(--text);
+  padding:9px 12px;border-radius:var(--rsm);font-family:'Nunito',sans-serif;font-size:13px;outline:none;
+  transition:border-color .2s,box-shadow .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,111,168,.1);}
+.btn{padding:10px 20px;border-radius:var(--rsm);font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;
+  cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#2892d7);color:#fff;box-shadow:0 4px 12px rgba(26,111,168,.25);}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-danger-fill{background:linear-gradient(135deg,var(--danger),#b02040);color:#fff;box-shadow:0 4px 12px rgba(217,64,96,.3);}
+.btn-danger-fill:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-outline{background:var(--surface);border:1.5px solid var(--border);color:var(--text2);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+.btn-full{width:100%;justify-content:center;}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;filter:none!important;}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--r);padding:26px 18px;
+  text-align:center;cursor:pointer;transition:all .3s;position:relative;background:var(--surface2);}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:var(--accent-light);}
+.upload-zone.invalid{border-color:var(--danger);background:var(--danger-light);animation:shake .35s ease;}
+.upload-zone.valid{border-color:var(--accent2);background:var(--accent2-light);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2;}
+.upload-icon{font-size:36px;margin-bottom:9px;transition:transform .3s;}
+.upload-zone:hover .upload-icon{transform:scale(1.1);}
+.upload-zone p{font-size:13px;color:var(--muted);}
+.upload-zone strong{color:var(--accent);}
+#preview-img{width:100%;max-height:175px;object-fit:contain;border-radius:8px;margin-top:11px;display:none;border:1px solid var(--border);}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-6px);}40%{transform:translateX(6px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
+.img-validation-status{display:none;margin-top:10px;padding:10px 13px;border-radius:var(--rsm);
+  font-size:12.5px;font-weight:700;align-items:center;gap:8px;}
+.img-validation-status.checking{display:flex;background:var(--accent-light);color:var(--accent);border:1px solid rgba(26,111,168,.2);}
+.img-validation-status.valid{display:flex;background:var(--accent2-light);color:var(--accent2);border:1px solid rgba(14,154,114,.25);}
+.img-validation-status.invalid{display:flex;background:var(--danger-light);color:var(--danger);border:1px solid rgba(217,64,96,.25);}
+.val-spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;
+  border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+#result-panel{border:1.5px solid var(--border);border-radius:var(--r);padding:18px;margin-top:13px;display:none;
+  background:var(--surface2);animation:fadeSlide .3s ease;}
+.result-type{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;margin-bottom:8px;}
+.result-stage-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  padding:6px 18px;border-radius:20px;margin-bottom:14px;letter-spacing:.05em;}
+.conf-bar-wrap{height:7px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:5px;}
+.conf-bar{height:100%;border-radius:4px;width:0%;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.conf-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+#result-panel.s-normal  {border-color:rgba(14,154,114,.5); background:linear-gradient(135deg,#edfaf4,#f5fdf9);}
+#result-panel.s-1       {border-color:rgba(14,154,114,.55);background:linear-gradient(135deg,#e6faf0,#f0fdf7);}
+#result-panel.s-2       {border-color:rgba(201,125,21,.55);background:linear-gradient(135deg,#fdf4e0,#fffaf0);}
+#result-panel.s-3       {border-color:rgba(180,160,0,.6);  background:linear-gradient(135deg,#fdfcda,#fffef0);}
+#result-panel.s-4       {border-color:rgba(217,64,96,.55); background:linear-gradient(135deg,#fdeef2,#fff5f7);}
+#result-panel.s-critical{border-color:#700020;border-width:2.5px;background:linear-gradient(135deg,#1e0008,#150004);}
+#result-panel.s-normal  .result-type{color:#0e9a72;}
+#result-panel.s-1       .result-type{color:#0a7a55;}
+#result-panel.s-2       .result-type{color:#c97d15;}
+#result-panel.s-3       .result-type{color:#9a8800;}
+#result-panel.s-4       .result-type{color:#d94060;}
+#result-panel.s-critical .result-type{color:#ff5070;}
+#result-panel.s-critical .conf-label{color:#cc9090;}
+#result-panel.s-critical .conf-bar-wrap{background:rgba(255,255,255,.1);}
+.sb-normal  {background:#c0eedd;color:#0a6040;}
+.sb-1       {background:#bef0d8;color:#0a6640;}
+.sb-2       {background:#fde8b8;color:#7a4800;}
+.sb-3       {background:#f9f8a0;color:#666000;}
+.sb-4       {background:#f8b8c8;color:#7a0820;}
+.sb-critical{background:#5a0015;color:#ffb0c0;animation:critblink 1.1s infinite;}
+@keyframes critblink{0%,100%{opacity:1;}50%{opacity:.35;}}
+.alert-normal{margin-top:11px;padding:10px 13px;background:var(--accent2-light);border:1px solid rgba(14,154,114,.25);
+  border-radius:var(--rsm);color:var(--accent2);font-size:12.5px;font-weight:600;display:none;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.critical-box{margin-top:16px;padding:16px;border-radius:var(--r);
+  background:linear-gradient(135deg,#fff0f3,#ffe4e9);
+  border:2px solid rgba(217,64,96,.35);display:none;animation:fadeSlide .3s ease;}
+#result-panel.s-critical .critical-box{background:linear-gradient(135deg,#2a0008,#1a0004);border-color:#8a0025;}
+.critical-box-title{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;color:var(--danger);margin-bottom:6px;}
+#result-panel.s-critical .critical-box-title{color:#ff5070;}
+.critical-box-msg{font-size:12.5px;color:#7a2030;line-height:1.6;}
+#result-panel.s-critical .critical-box-msg{color:#e09090;}
+.critical-blink{animation:blink 1.2s infinite;}
+#no-result-msg{text-align:center;padding:26px;color:var(--muted);}
+#post-action-panel{display:none;margin-top:14px;animation:fadeSlide .3s ease;}
+.post-actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.post-actions-grid.critical-mode{grid-template-columns:1fr;}
+.pac-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);
+  padding:15px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;
+  cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;color:var(--text2);}
+.pac-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;border-radius:calc(var(--r) - 1px);}
+.pac-btn:hover::before{opacity:1;}
+.pac-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.pac-btn:active{transform:translateY(0);}
+.pac-btn-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.pac-btn span{font-size:10.5px;font-weight:700;text-align:center;z-index:1;line-height:1.3;}
+.pb-treatment::before{background:linear-gradient(135deg,var(--accent-light),transparent);}
+.pb-treatment:hover{border-color:var(--accent);}
+.pb-treatment .pac-btn-icon{background:var(--accent-light);color:var(--accent);}
+.pb-diet::before{background:linear-gradient(135deg,var(--accent2-light),transparent);}
+.pb-diet:hover{border-color:var(--accent2);}
+.pb-diet .pac-btn-icon{background:var(--accent2-light);color:var(--accent2);}
+.pb-meds::before{background:linear-gradient(135deg,var(--warn-light),transparent);}
+.pb-meds:hover{border-color:var(--warn);}
+.pb-meds .pac-btn-icon{background:var(--warn-light);color:var(--warn);}
+.pb-email::before{background:linear-gradient(135deg,var(--danger-light),transparent);}
+.pb-email:hover{border-color:var(--danger);}
+.pb-email .pac-btn-icon{background:var(--danger-light);color:var(--danger);}
+.pb-pdf::before{background:linear-gradient(135deg,var(--accent-light),transparent);}
+.pb-pdf:hover{border-color:var(--accent);}
+.pb-pdf .pac-btn-icon{background:var(--accent-light);color:var(--accent);}
+.pb-copy::before{background:linear-gradient(135deg,var(--accent2-light),transparent);}
+.pb-copy:hover{border-color:var(--accent2);}
+.pb-copy .pac-btn-icon{background:var(--accent2-light);color:var(--accent2);}
+.pb-critical-send{border-color:var(--danger);background:linear-gradient(135deg,#fff0f3,var(--surface));
+  flex-direction:row;padding:18px 24px;gap:14px;justify-content:center;}
+.pb-critical-send::before{background:linear-gradient(135deg,var(--danger-light),transparent);}
+.pb-critical-send:hover{border-color:var(--danger);box-shadow:0 4px 20px rgba(217,64,96,.18);}
+.pb-critical-send .pac-btn-icon{background:var(--danger-light);color:var(--danger);width:44px;height:44px;font-size:20px;}
+.pb-critical-send span{font-size:13px;color:var(--danger);}
+.spinner{width:15px;height:15px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
+  border-radius:50%;animation:spin .5s linear infinite;display:none;}
+.modal-overlay{position:fixed;inset:0;background:rgba(26,37,53,.38);backdrop-filter:blur(5px);
+  z-index:1000;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;animation:mfade .18s;}
+@keyframes mfade{from{opacity:0;}to{opacity:1;}}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--rlg);
+  padding:26px;width:460px;max-width:94vw;box-shadow:var(--shadow-lg);
+  animation:mscale .2s cubic-bezier(.34,1.56,.64,1);}
+@keyframes mscale{from{transform:scale(.94);}to{transform:scale(1);}}
+.modal-title{font-family:'Playfair Display',serif;font-weight:700;font-size:17px;margin-bottom:16px;color:var(--text);}
+.modal-footer{display:flex;gap:10px;margin-top:15px;}
+.modal-critical-header{background:linear-gradient(135deg,var(--danger-light),#fff);
+  border:1.5px solid rgba(217,64,96,.25);border-radius:10px;padding:12px 16px;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;}
+.modal-critical-header .ci{font-size:22px;}
+.modal-critical-msg{font-size:12.5px;color:#7a2030;line-height:1.55;}
+.modal-critical-msg strong{display:block;color:var(--danger);font-size:13.5px;margin-bottom:3px;}
+.info-modal-box{max-width:560px;width:100%;}
+.info-content{max-height:58vh;overflow-y:auto;display:flex;flex-direction:column;gap:11px;padding-right:4px;}
+.info-section{padding:14px;background:var(--surface2);border-radius:var(--rsm);border-left:3px solid var(--accent);}
+.info-section.green{border-left-color:var(--accent2);}
+.info-section.orange{border-left-color:var(--warn);}
+.info-section.red{border-left-color:var(--danger);}
+.info-section h4{font-size:13px;font-weight:700;margin-bottom:7px;color:var(--text);}
+.info-section p,.info-section ul{font-size:12.5px;color:var(--text2);line-height:1.75;}
+.info-section ul{padding-left:17px;}
+.info-note{font-size:11.5px;color:var(--muted);padding:8px 12px;background:var(--warn-light);border-radius:var(--rsm);border-left:2px solid var(--warn);}
+.toast-container{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+.toast{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;
+  padding:11px 15px;font-size:12.5px;font-family:'JetBrains Mono',monospace;
+  max-width:340px;box-shadow:var(--shadow-md);animation:slideUp .25s ease;
+  display:flex;align-items:center;gap:9px;color:var(--text2);}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.toast.success{border-left:3px solid var(--accent2);color:var(--accent2);}
+.toast.error{border-left:3px solid var(--danger);color:var(--danger);}
+.toast.info{border-left:3px solid var(--accent);color:var(--accent);}
+.toast.warn{border-left:3px solid var(--warn);color:var(--warn);}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.settings-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.settings-section-header{padding:13px 19px;border-bottom:1px solid var(--border);background:var(--surface2);}
+.settings-section-title{font-family:'Playfair Display',serif;font-weight:700;font-size:13.5px;color:var(--text);}
+.settings-body{padding:18px 19px;display:flex;flex-direction:column;gap:14px;}
+.theme-swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.theme-swatch{border:2px solid var(--border);border-radius:10px;padding:14px 12px;
+  cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:10px;background:var(--surface2);}
+.theme-swatch:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.theme-swatch.active{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light);}
+.swatch-preview{width:36px;height:36px;border-radius:8px;flex-shrink:0;border:1px solid rgba(0,0,0,.08);}
+.swatch-label{font-size:12.5px;font-weight:700;color:var(--text2);}
+.swatch-sub{font-size:10.5px;color:var(--muted);margin-top:1px;}
+.bg-upload-zone{border:2px dashed var(--border);border-radius:var(--r);padding:22px 16px;
+  text-align:center;cursor:pointer;transition:all .2s;position:relative;background:var(--surface2);}
+.bg-upload-zone:hover{border-color:var(--accent);background:var(--accent-light);}
+.bg-upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2;}
+.bg-preview{width:100%;height:80px;object-fit:cover;border-radius:8px;margin-top:10px;display:none;border:1px solid var(--border);}
+.range-row{display:flex;align-items:center;gap:12px;}
+.range-row input[type=range]{flex:1;accent-color:var(--accent);}
+.range-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);min-width:36px;text-align:right;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.toggle-row:last-child{border-bottom:none;}
+.toggle-label{font-size:13px;color:var(--text2);}
+.toggle{position:relative;width:40px;height:22px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:var(--border2);border-radius:22px;cursor:pointer;transition:.3s;}
+.toggle-slider:before{content:'';position:absolute;width:16px;height:16px;border-radius:50%;
+  background:#fff;left:3px;top:3px;transition:.3s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.toggle input:checked+.toggle-slider{background:var(--accent);}
+.toggle input:checked+.toggle-slider:before{transform:translateX(18px);}
+body.theme-dark{--bg:#0f1520;--bg2:#141c2a;--surface:#1a2438;--surface2:#1f2d44;
+  --border:rgba(100,150,200,.15);--border2:rgba(100,150,200,.25);
+  --text:#e2eaf5;--text2:#a8bdd4;--muted:#5a7a99;--muted2:#3d5a78;
+  --shadow:0 2px 12px rgba(0,0,0,.3);--shadow-md:0 4px 24px rgba(0,0,0,.4);--shadow-lg:0 8px 40px rgba(0,0,0,.5);
+  --accent-light:rgba(26,111,168,.15);--accent2-light:rgba(14,154,114,.12);
+  --danger-light:rgba(217,64,96,.12);--warn-light:rgba(201,125,21,.12);}
+body.theme-teal{--bg:#f0faf7;--bg2:#e4f5f0;--surface:#fff;--surface2:#f2faf7;
+  --border:#b8ddd4;--border2:#90ccc0;--accent:#0e7a62;--accent-light:#e0f5ef;
+  --accent2:#0a9688;--accent2-light:#e0f3f2;--text:#0d2b24;--text2:#235447;--muted:#4a8070;--muted2:#82b0a5;}
+body.theme-rose{--bg:#fdf4f6;--bg2:#fae8ed;--surface:#fff;--surface2:#fdf0f3;
+  --border:#e8c4ce;--border2:#d8a0b0;--accent:#b5294a;--accent-light:#fde8ee;
+  --accent2:#c94070;--accent2-light:#fce4ed;--text:#2a0a14;--text2:#5a2035;--muted:#8a4060;--muted2:#b88098;}
+body,body *{transition:background-color .35s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease;}
+html,body{max-width:100%;overflow-x:hidden;}
+*{-webkit-tap-highlight-color:transparent;}
+img,svg{max-width:100%;}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:var(--surface);border-top:1.5px solid var(--border);
+  box-shadow:0 -4px 24px rgba(26,111,168,.13);}
+.mobile-nav-inner{display:flex;align-items:stretch;height:60px;}
+.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;cursor:pointer;border:none;background:transparent;
+  color:var(--muted);transition:color .18s;position:relative;padding:4px 2px;
+  -webkit-tap-highlight-color:transparent;min-height:44px;}
+.mob-nav-item svg{width:21px;height:21px;flex-shrink:0;}
+.mob-nav-item span{font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.03em;}
+.mob-nav-item.active{color:var(--accent);}
+.mob-nav-item.active::after{content:'';position:absolute;top:0;left:20%;right:20%;
+  height:2.5px;background:var(--accent);border-radius:0 0 3px 3px;}
+@supports(padding-bottom:env(safe-area-inset-bottom)){
+  .mobile-nav{padding-bottom:env(safe-area-inset-bottom);}
+  .mobile-nav-inner{height:60px;}}
+@media(max-width:767px){
+  .toast-container{bottom:72px;right:10px;left:10px;align-items:flex-end;}
+  .toast{max-width:100%;font-size:11.5px;padding:9px 12px;}}
+@media(max-width:767px){
+  .modal-overlay{align-items:flex-end;}
+  .modal{width:100%;max-width:100%;border-radius:18px 18px 0 0;
+    padding:20px 16px 24px;max-height:88vh;overflow-y:auto;
+    animation:slideSheet .28s cubic-bezier(.32,1,.56,1);}
+  @keyframes slideSheet{from{transform:translateY(100%);}to{transform:translateY(0);}}
+  .info-modal-box{width:100%;max-width:100%;}
+  .modal-footer{flex-wrap:wrap;}
+  .modal-footer .btn{flex:1;min-width:0;justify-content:center;font-size:12px;}
+  .info-content{max-height:55vh;}}
+@media(min-width:1280px){
+  .sidebar{width:72px;}.sidebar:hover{width:252px;}.main{margin-left:72px;}
+  .content{padding:28px 36px;}.dash-action-row{grid-template-columns:repeat(6,1fr);}
+  .two-col{grid-template-columns:1fr 1fr;}.settings-grid{grid-template-columns:1fr 1fr;}
+  .post-actions-grid:not(.critical-mode){grid-template-columns:repeat(3,1fr);}}
+@media(max-width:1279px) and (min-width:1024px){
+  .dash-action-row{grid-template-columns:repeat(6,1fr);gap:10px;}
+  .two-col{grid-template-columns:1fr 1fr;}.settings-grid{grid-template-columns:1fr 1fr;}
+  .post-actions-grid:not(.critical-mode){grid-template-columns:repeat(3,1fr);}}
+@media(max-width:1023px) and (min-width:768px){
+  .sidebar{width:56px;}.sidebar:hover{width:210px;}.main{margin-left:56px;}
+  .content{padding:18px 18px;}.topbar{padding:0 16px;}.topbar-title{font-size:14px;}
+  .topbar-sub{display:none;}.dash-hero{height:138px;}.dash-hero-title{font-size:17px;}
+  .dash-hero-dna{font-size:80px;}.dash-action-row{grid-template-columns:repeat(3,1fr);gap:10px;}
+  .two-col{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr 1fr;}
+  .settings-grid{grid-template-columns:1fr 1fr;}
+  .post-actions-grid:not(.critical-mode){grid-template-columns:repeat(3,1fr);}}
+@media(max-width:767px) and (min-width:480px){
+  .sidebar{display:none;}.mobile-nav{display:block;}.main{margin-left:0;}
+  .content{padding:14px 14px 76px;}.topbar{padding:0 14px;height:52px;}
+  .topbar-title{font-size:13px;}.topbar-sub{display:none;}
+  .status-pill{font-size:10px;padding:3px 9px;gap:5px;}
+  .dash-hero{height:118px;border-radius:12px;margin-bottom:14px;}
+  .dash-hero-title{font-size:15px;}.dash-hero-sub{font-size:11px;}
+  .dash-hero-badge{font-size:9.5px;padding:3px 9px;}.dash-hero-dna{font-size:72px;right:14px;}
+  .dash-hero-content{padding:18px;}.sec-title{font-size:10.5px;margin-bottom:12px;}
+  .dash-action-row{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+  .dab{padding:12px 6px 10px;gap:7px;}.dab-icon{width:36px;height:36px;font-size:16px;}
+  .dab-label{font-size:9.5px;}.two-col{grid-template-columns:1fr;gap:12px;}
+  .form-row{grid-template-columns:1fr 1fr;}.settings-grid{grid-template-columns:1fr;}
+  .post-actions-grid:not(.critical-mode){grid-template-columns:repeat(2,1fr);gap:8px;}
+  .card-header{padding:10px 14px;}.card-body{padding:12px 14px;}.card-title{font-size:12.5px;}
+  .btn{font-size:12px;padding:9px 15px;}.pac-btn{padding:12px 8px 10px;}
+  .pac-btn-icon{width:34px;height:34px;font-size:15px;}.pac-btn span{font-size:9.5px;}
+  .pb-critical-send{flex-direction:column;padding:14px 10px;}}
+@media(max-width:479px){
+  .sidebar{display:none;}.mobile-nav{display:block;}.main{margin-left:0;}
+  .content{padding:10px 10px 76px;}.topbar{padding:0 12px;height:50px;}
+  .topbar-title{font-size:11.5px;line-height:1.3;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .topbar-sub{display:none;}.status-pill{display:none;}.avatar{width:30px;height:30px;font-size:10px;}
+  .dash-hero{height:96px;border-radius:10px;margin-bottom:12px;}.dash-hero-content{padding:13px;}
+  .dash-hero-title{font-size:12.5px;line-height:1.3;}.dash-hero-sub{display:none;}
+  .dash-hero-badge{font-size:9px;padding:2px 8px;margin-top:4px;}.dash-hero-dna{display:none;}
+  .sec-title{font-size:9.5px;margin-bottom:10px;letter-spacing:.1em;}
+  .dash-action-row{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;}
+  .dab{padding:9px 4px 8px;gap:5px;border-radius:10px;}
+  .dab-icon{width:30px;height:30px;font-size:14px;border-radius:8px;}.dab-label{font-size:8.5px;line-height:1.2;}
+  .two-col{grid-template-columns:1fr;gap:10px;}.form-row{grid-template-columns:1fr;}.settings-grid{grid-template-columns:1fr;}
+  .post-actions-grid:not(.critical-mode){grid-template-columns:repeat(2,1fr);gap:7px;}
+  .card-header{padding:9px 11px;}.card-body{padding:11px 11px;}.card-title{font-size:11.5px;}.card-tag{font-size:8.5px;padding:2px 6px;}
+  .btn{font-size:11.5px;padding:8px 13px;gap:5px;}.btn-full{width:100%;justify-content:center;}
+  .pac-btn{padding:10px 5px 9px;border-radius:10px;}.pac-btn-icon{width:30px;height:30px;font-size:14px;border-radius:8px;}
+  .pac-btn span{font-size:8.5px;}.pb-critical-send{flex-direction:column;padding:13px 8px;gap:8px;}
+  .pb-critical-send .pac-btn-icon{width:36px;height:36px;font-size:17px;}.pb-critical-send span{font-size:11.5px;}
+  .fg label{font-size:9px;letter-spacing:.06em;}.fg input,.fg select,.fg textarea{font-size:12px;padding:8px 10px;}
+  .upload-zone{padding:16px 10px;}.upload-icon{font-size:26px;margin-bottom:6px;}.upload-zone p{font-size:11px;}
+  .result-type{font-size:16px;}.result-stage-badge{font-size:10.5px;padding:4px 12px;}.conf-label{font-size:10px;}
+  .info-section{padding:10px;}.info-section h4{font-size:11.5px;}
+  .info-section ul,.info-section p{font-size:11px;line-height:1.65;}.info-note{font-size:10.5px;}
+  .settings-section-title{font-size:12px;}.theme-swatch{padding:10px 8px;gap:8px;}
+  .swatch-preview{width:30px;height:30px;}.swatch-label{font-size:11.5px;}.swatch-sub{font-size:9.5px;}
+  .toggle-label{font-size:12px;}.progress-ring{width:90px;height:90px;}
+  .progress-ring svg{width:90px;height:90px;}.ring-label{font-size:17px;}}
+@media(hover:none) and (pointer:coarse){
+  .dab:hover,.pac-btn:hover,.btn-primary:hover,.btn-outline:hover,.theme-swatch:hover,.dab:hover .dab-icon{transform:none!important;}
+  .mob-nav-item,.nav-item{min-height:44px;}.btn{min-height:44px;}
+  .fg input,.fg select,.fg textarea{min-height:44px;}.toggle{width:46px;height:26px;}
+  .toggle-slider:before{width:20px;height:20px;top:3px;}
+  .toggle input:checked+.toggle-slider:before{transform:translateX(20px);}}
+
+/* ── BUG FIX: Image info panel — HIDDEN from UI, used only internally ── */
+#img-info-panel{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  overflow:hidden !important;
+  margin:0 !important;
+  padding:0 !important;
+  pointer-events:none !important;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="sidebar">
+  <div class="logo-mark">GT</div>
+  <div class="nav-item active" id="nav-dashboard">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <span>Dashboard</span>
+  </div>
+  <div class="nav-item" id="nav-diagnose">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span>New Diagnosis</span>
+  </div>
+  <div class="nav-item" id="nav-reports">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Reports</span>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-item" id="nav-settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 115.93 19.07"/></svg>
+    <span>Settings</span>
+  </div>
+</nav>
+
+<div class="main">
+<header class="topbar">
+  <div>
+    <div class="topbar-title">Gynecological &amp; Testicular Cancer Prediction AI</div>
+    <div class="topbar-sub" id="breadcrumb">/ Dashboard Overview</div>
+  </div>
+  <div class="topbar-right">
+    <div class="status-pill"><div class="pulse-dot"></div>Model Active</div>
+    <div class="avatar">Dr</div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- DASHBOARD TAB -->
+<div id="tab-dashboard">
+  <div class="dash-hero" id="dash-hero">
+    <div class="dash-hero-mesh"></div>
+    <div class="dash-hero-grid" id="hero-grid"></div>
+    <div class="dash-hero-dna" id="hero-dna">🧬</div>
+    <div class="dash-hero-content">
+      <div class="dash-hero-title">Gynecological &amp; Testicular<br>Cancer Prediction AI</div>
+      <div class="dash-hero-sub">Advanced deep learning model for early-stage cancer detection</div>
+      <div class="dash-hero-badge"><div class="pulse-dot" style="background:#fff"></div>Model v2.4 — Accuracy 91.4%</div>
+    </div>
+  </div>
+  <div class="sec-title">Quick Actions</div>
+  <div class="dash-action-row">
+    <div class="dab t" id="dab-treatment"><div class="dab-icon">💊</div><div class="dab-label">Treatment Plan</div></div>
+    <div class="dab g" id="dab-diet"><div class="dab-icon">🥗</div><div class="dab-label">Diet Plan</div></div>
+    <div class="dab o" id="dab-medicines"><div class="dab-icon">🧪</div><div class="dab-label">Medicines</div></div>
+    <div class="dab r" id="dab-email"><div class="dab-icon">✉️</div><div class="dab-label">Send Report</div></div>
+    <div class="dab t" id="dab-pdf"><div class="dab-icon">📄</div><div class="dab-label">Export PDF</div></div>
+    <div class="dab g" id="dab-copy"><div class="dab-icon">📋</div><div class="dab-label">Copy Report</div></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Model Accuracy</span></div>
+      <div class="card-body ring-wrap">
+        <div class="progress-ring">
+          <svg width="110" height="110" viewBox="0 0 110 110">
+            <circle cx="55" cy="55" r="42" fill="none" stroke="#e8eef5" stroke-width="8" stroke-dasharray="263.9"/>
+            <circle cx="55" cy="55" r="42" fill="none" stroke="#1a6fa8" stroke-width="8"
+              stroke-dasharray="263.9" stroke-dashoffset="23.5" transform="rotate(-90,55,55)" stroke-linecap="round"/>
+          </svg>
+          <div class="ring-label">91.4%<span class="ring-sub">Accuracy</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSE TAB -->
+<div id="tab-diagnose" style="display:none;">
+  <div class="sec-title">New Diagnosis</div>
+  <div class="two-col">
+    <div style="display:flex;flex-direction:column;gap:15px;">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Patient Information</span></div>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="fg">
+              <label>Patient ID <span style="color:var(--accent2);font-size:9px;font-family:'JetBrains Mono',monospace;">● AUTO-GENERATED</span></label>
+              <div style="display:flex;gap:6px;align-items:center;">
+                <input type="text" id="p-id" readonly style="flex:1;background:var(--accent-light);color:var(--accent);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;cursor:default;border-color:var(--accent);"/>
+                <button type="button" id="btn-regen-id" title="Generate new ID" style="background:var(--accent);border:none;border-radius:var(--rsm);width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="fg"><label>Full Name</label><input type="text" id="p-name" placeholder="Full name"/></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>Age</label><input type="number" id="p-age" placeholder="Age" min="1" max="120"/></div>
+            <div class="fg">
+              <label>Gender</label>
+              <select id="p-gender">
+                <option value="">Select gender...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top:4px;">
+            <div class="fg">
+              <label>📞 Phone Number</label>
+              <input type="tel" id="p-contact" placeholder="Phone number"/>
+            </div>
+            <div class="fg">
+              <label>✉️ Email Address</label>
+              <input type="email" id="p-email" placeholder="Email address"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Upload Medical Image</span>
+          <span class="card-tag" style="background:#e8f5ff;color:#0066aa;border:1px solid #b8d8f0;font-size:9px;">🔒 Medical Scans Only</span>
+        </div>
+        <div class="card-body">
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="file-input" accept="image/*"/>
+            <div class="upload-icon" id="upload-icon">🔬</div>
+            <p><strong>Click or drag</strong> to upload</p>
+            <p style="font-size:11px;margin-top:3px;">Medical scans only: X-Ray, MRI, CT, Ultrasound, Histology</p>
+            <img id="preview-img" src="" alt="Preview"/>
+          </div>
+
+          <!-- ── BUG FIX: img-info-panel is permanently hidden from UI (display:none!important in CSS).
+               The internal IDs (img-info-format, img-info-size, img-info-dims) are kept so existing
+               JS that writes to them does not break — they simply are never rendered. ── -->
+          <div id="img-info-panel" aria-hidden="true">
+            <div class="img-info-grid">
+              <div class="img-info-item">
+                <span class="img-info-icon">📁</span>
+                <span class="img-info-val" id="img-info-format">—</span>
+                <span class="img-info-lbl">Format</span>
+              </div>
+              <div class="img-info-item">
+                <span class="img-info-icon">⚖️</span>
+                <span class="img-info-val" id="img-info-size">—</span>
+                <span class="img-info-lbl">File Size</span>
+              </div>
+              <div class="img-info-item">
+                <span class="img-info-icon">📐</span>
+                <span class="img-info-val" id="img-info-dims">—</span>
+                <span class="img-info-lbl">Dimensions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-validation-status" id="val-status">
+            <span class="val-spinner" id="val-spinner"></span>
+            <span id="val-msg">Checking image...</span>
+          </div>
+          <div style="margin-top:10px;padding:10px 12px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent);font-size:11.5px;color:var(--muted);">
+            <strong style="color:var(--text2);">✅ Accepted image types:</strong> X-Ray, MRI, CT, Ultrasound, Histology, Mammogram, PET scans &nbsp;|&nbsp; <strong style="color:var(--accent2);">Size: 1 KB – 50 MB &nbsp;|&nbsp; Formats: JPG, PNG, BMP, TIFF, WebP &amp; more</strong>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full" id="analyze-btn" disabled>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Analyze Image
+        <div class="spinner" id="spin"></div>
+      </button>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:-8px;" id="analyze-hint">Upload and validate a medical image to enable analysis</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:15px;">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Diagnosis Result</span>
+          <span class="card-tag" id="res-status">Awaiting scan</span>
+        </div>
+        <div class="card-body">
+          <div id="no-result-msg">
+            <div style="font-size:36px;margin-bottom:9px;">🩺</div>
+            <p style="font-size:13px;">Upload a <strong style="color:var(--accent)">medical scan</strong> and click <strong style="color:var(--accent)">Analyze</strong> to get results.</p>
+          </div>
+          <div id="result-panel">
+            <div class="result-type" id="res-type"></div>
+            <div class="result-stage-badge" id="res-stage-badge"></div>
+            <div class="conf-bar-wrap"><div class="conf-bar" id="conf-bar"></div></div>
+            <div class="conf-label" id="conf-label"></div>
+            <div class="alert-normal" id="normal-alert">✓ No cancer indicators detected. Recommend follow-up in 12 months.</div>
+          </div>
+          <div class="critical-box" id="critical-box">
+            <div class="critical-box-title"><span class="critical-blink">⚠</span> CRITICAL STAGE DETECTED</div>
+            <div class="critical-box-msg" id="critical-box-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="post-action-panel">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title" id="action-panel-title">Actions</span>
+            <span class="card-tag" id="action-panel-tag">Post-Diagnosis</span>
+          </div>
+          <div class="card-body">
+            <div class="post-actions-grid" id="post-actions-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORTS TAB -->
+<div id="tab-reports" style="display:none;">
+  <div class="sec-title">Report Center</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Quick Export</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:11px;">
+        <div class="fg"><label>Select Patient</label>
+          <select id="report-patient"><option value="">Select...</option></select>
+        </div>
+        <button class="btn btn-primary btn-full" id="btn-open-report">📂 Open Report</button>
+        <button class="btn btn-primary btn-full" id="btn-quick-export">📄 Export PDF</button>
+        <button class="btn btn-outline btn-full" id="btn-report-email">Send Email Report</button>
+        <button class="btn btn-outline btn-full" id="btn-report-copy">Copy Report Text</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS TAB -->
+<div id="tab-settings" style="display:none;">
+  <div class="sec-title">Appearance &amp; Settings</div>
+  <div class="settings-grid">
+    <div class="settings-section">
+      <div class="settings-section-header"><div class="settings-section-title">🎨 Theme</div></div>
+      <div class="settings-body">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:2px;">Select a colour theme — <strong style="color:var(--accent2);">saved automatically</strong></div>
+        <div class="theme-swatches">
+          <div class="theme-swatch active" id="sw-light" data-theme="light"><div class="swatch-preview" style="background:linear-gradient(135deg,#f0f4f8,#e8eef5);border:1px solid #d0dce8;"></div><div><div class="swatch-label">Light</div><div class="swatch-sub">Default clean</div></div></div>
+          <div class="theme-swatch" id="sw-dark" data-theme="dark"><div class="swatch-preview" style="background:linear-gradient(135deg,#0f1520,#1a2438);"></div><div><div class="swatch-label">Dark</div><div class="swatch-sub">Night mode</div></div></div>
+          <div class="theme-swatch" id="sw-teal" data-theme="teal"><div class="swatch-preview" style="background:linear-gradient(135deg,#e0f5ef,#f2faf7);border:1px solid #b8ddd4;"></div><div><div class="swatch-label">Teal</div><div class="swatch-sub">Medical green</div></div></div>
+          <div class="theme-swatch" id="sw-rose" data-theme="rose"><div class="swatch-preview" style="background:linear-gradient(135deg,#fde8ee,#fdf4f6);border:1px solid #e8c4ce;"></div><div><div class="swatch-label">Rose</div><div class="swatch-sub">Warm accent</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-section-header"><div class="settings-section-title">🖼️ Dashboard Background Image</div></div>
+      <div class="settings-body">
+        <div style="font-size:12px;color:var(--muted);">Upload a custom hero banner — <strong style="color:var(--accent2);">persists after reload</strong>. Recommended: 1200×300px</div>
+        <div class="bg-upload-zone"><input type="file" id="bg-file-input" accept="image/*"/><div style="font-size:28px;margin-bottom:6px;">🖼️</div><p style="font-size:13px;color:var(--muted);"><strong style="color:var(--accent)">Click or drag</strong> to upload</p><p style="font-size:11px;color:var(--muted2);margin-top:3px;">JPG, PNG, WebP — Max 5MB (stored locally)</p><img id="bg-preview" class="bg-preview" src="" alt=""/></div>
+        <div style="display:flex;gap:8px;margin-top:4px;">
+          <button class="btn btn-outline" style="font-size:12px;padding:7px 14px;flex:1;" id="btn-remove-bg">✕ Remove Image</button>
+          <button class="btn btn-primary" style="font-size:12px;padding:7px 14px;flex:1;" id="btn-upload-bg">Upload</button>
+        </div>
+        <div style="margin-top:6px;">
+          <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px;">Banner Height — saved automatically</div>
+          <div class="range-row"><input type="range" min="100" max="280" value="158" id="hero-height-slider"/><span class="range-val" id="hero-height-val">158px</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-section-header"><div class="settings-section-title">⚙️ Display Options</div></div>
+      <div class="settings-body" style="padding-top:8px;padding-bottom:8px;">
+        <div class="toggle-row"><span class="toggle-label">Show DNA emoji on banner</span><label class="toggle"><input type="checkbox" id="tog-dna" checked/><span class="toggle-slider"></span></label></div>
+        <div class="toggle-row"><span class="toggle-label">Show grid overlay on banner</span><label class="toggle"><input type="checkbox" id="tog-grid" checked/><span class="toggle-slider"></span></label></div>
+        <div class="toggle-row"><span class="toggle-label">Compact sidebar labels</span><label class="toggle"><input type="checkbox" id="tog-compact"/><span class="toggle-slider"></span></label></div>
+        <div class="toggle-row"><span class="toggle-label">Smooth theme transitions</span><label class="toggle"><input type="checkbox" id="tog-trans" checked/><span class="toggle-slider"></span></label></div>
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-section-header"><div class="settings-section-title">ℹ️ System Information</div></div>
+      <div class="settings-body" style="gap:10px;">
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12.5px;"><span style="color:var(--muted);">Model Version</span><span style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600;">v2.4</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12.5px;"><span style="color:var(--muted);">Image Validation</span><span style="color:var(--accent2);font-weight:700;">● Active</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12.5px;"><span style="color:var(--muted);">Settings Persistence</span><span style="color:var(--accent2);font-weight:700;">● localStorage</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12.5px;"><span style="color:var(--muted);">Active Theme</span><span id="active-theme-label" style="font-family:'JetBrains Mono',monospace;color:var(--accent2);font-weight:600;">Light</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12.5px;"><span style="color:var(--muted);">Model Status</span><span style="color:var(--accent2);font-weight:700;">● Active</span></div>
+        <button class="btn btn-outline btn-full" id="btn-clear-storage" style="font-size:12px;margin-top:4px;">🗑 Clear All Saved Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mob-nav-item active" id="mob-nav-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Home</span></button>
+    <button class="mob-nav-item" id="mob-nav-diagnose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Diagnose</span></button>
+    <button class="mob-nav-item" id="mob-nav-reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Reports</span></button>
+    <button class="mob-nav-item" id="mob-nav-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 115.93 19.07"/></svg><span>Settings</span></button>
+  </div>
+</nav>
+
+<!-- EMAIL MODAL -->
+<div class="modal-overlay" id="email-modal">
+  <div class="modal">
+    <div class="modal-title" id="email-modal-title">✉ Send Report via Email</div>
+    <div class="modal-critical-header" id="critical-email-header" style="display:none;">
+      <div class="ci">🚨</div>
+      <div><div class="modal-critical-msg"><strong>CRITICAL STAGE ALERT</strong>An urgent cancer diagnosis has been detected. This alert report is being sent to the registered oncology team immediately.</div></div>
+    </div>
+    <div class="fg" style="margin-bottom:11px;"><label>Recipient Email</label><input type="email" id="email-input" placeholder="doctor@hospital.com"/></div>
+    <div class="fg"><label>Report Message</label><textarea id="email-body" rows="6" style="width:100%;resize:vertical;"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-danger-fill" id="send-btn-critical" style="display:none;">🚨 Send Critical Alert</button>
+      <button class="btn btn-primary" id="send-btn-normal">Send Report</button>
+      <button class="btn btn-outline" id="btn-cancel-email">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT VIEWER MODAL -->
+<div class="modal-overlay" id="report-view-modal">
+  <div class="modal info-modal-box" style="max-width:620px;">
+    <div class="modal-title" id="rv-modal-title">📋 Patient Report</div>
+    <div style="margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;" id="rv-patient-meta"></div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);padding:14px;max-height:52vh;overflow-y:auto;">
+      <pre id="rv-report-text" style="font-family:JetBrains Mono,monospace;font-size:11.5px;color:var(--text2);white-space:pre-wrap;line-height:1.7;margin:0;"></pre>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" id="rv-btn-pdf">📄 Export PDF</button>
+      <button class="btn btn-outline" id="rv-btn-email">✉️ Send Email</button>
+      <button class="btn btn-outline" id="rv-btn-copy">📋 Copy</button>
+      <button class="btn btn-outline" id="rv-btn-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="info-modal">
+  <div class="modal info-modal-box">
+    <div class="modal-title" id="info-modal-title"></div>
+    <div class="info-content" id="info-modal-body"></div>
+    <div class="modal-footer"><button class="btn btn-primary" id="btn-close-info">Close</button></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toasts"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+'use strict';
+
+var SK={theme:'gtai_theme',heroImg:'gtai_hero_img',heroH:'gtai_hero_height',showDna:'gtai_show_dna',showGrid:'gtai_show_grid',compact:'gtai_compact',transitions:'gtai_transitions'};
+function saveLS(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function loadLS(k,d){try{var v=localStorage.getItem(k);return v!==null?v:d;}catch(e){return d;}}
+function removeLS(k){try{localStorage.removeItem(k);}catch(e){}}
+
+var lastResult=null;
+var lastPatient=null;
+var imageValidated=false;
+var ALERT_EMAIL='gynogicalcancertesticularcance@gmail.com';
+
+function toast(msg,type){
+  type=type||'info';
+  var c=document.getElementById('toasts');
+  var el=document.createElement('div');
+  el.className='toast '+type;
+  var icons={success:'✓',error:'✕',info:'ℹ',warn:'⚠'};
+  el.innerHTML='<span style="font-size:15px">'+(icons[type]||'ℹ')+'</span><span>'+msg+'</span>';
+  c.appendChild(el);
+  setTimeout(function(){el.style.opacity='0';el.style.transition='opacity .3s';},3500);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},3900);
+}
+
+function setTab(t){
+  ['dashboard','diagnose','reports','settings'].forEach(function(id){
+    document.getElementById('tab-'+id).style.display=id===t?'block':'none';
+  });
+  var navOrder=['dashboard','diagnose','reports',null,'settings'];
+  document.querySelectorAll('.nav-item').forEach(function(el,i){el.classList.toggle('active',navOrder[i]===t);});
+  var mobMap={dashboard:'mob-nav-dashboard',diagnose:'mob-nav-diagnose',reports:'mob-nav-reports',settings:'mob-nav-settings'};
+  Object.keys(mobMap).forEach(function(k){var el=document.getElementById(mobMap[k]);if(el)el.classList.toggle('active',k===t);});
+  var labels={dashboard:'Dashboard Overview',diagnose:'New Diagnosis',reports:'Report Center',settings:'Settings'};
+  document.getElementById('breadcrumb').textContent='/ '+(labels[t]||t);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('nav-dashboard').addEventListener('click',function(){setTab('dashboard');});
+document.getElementById('nav-diagnose').addEventListener('click',function(){setTab('diagnose');});
+document.getElementById('nav-reports').addEventListener('click',function(){setTab('reports');});
+document.getElementById('nav-settings').addEventListener('click',function(){setTab('settings');});
+document.getElementById('mob-nav-dashboard').addEventListener('click',function(){setTab('dashboard');});
+document.getElementById('mob-nav-diagnose').addEventListener('click',function(){setTab('diagnose');});
+document.getElementById('mob-nav-reports').addEventListener('click',function(){setTab('reports');});
+document.getElementById('mob-nav-settings').addEventListener('click',function(){setTab('settings');});
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BUG FIX #1 — STRICT MEDICAL SCAN VALIDATION
+   • Expanded DICOM / scan keyword list
+   • REJECT_INDICATORS now blocks common non-medical photos (nature, art, selfies etc.)
+   • Pixel analysis: strict minimum grayscale ratio + maximum colorful ratio
+   • A net score < 4 always rejects — no "benefit of the doubt" acceptance
+   ───────────────────────────────────────────────────────────────────────── */
+var MEDICAL_KEYWORDS=[
+  'dicom','mri','ct scan','ct-scan','xray','x-ray','x ray','ultrasound','sonogram',
+  'mammogram','mammography','histology','pathology','radiology','radiograph',
+  'ecg','ekg','endoscopy','pet scan','pet-ct','nuclear medicine','fluoroscopy',
+  'angiogram','biopsy','cytology','scintigraphy','thermography',
+  'lung','liver','kidney','uterus','ovary','testicle','testicular','gynecological',
+  'breast','prostate','colon','bladder','pancreas','thyroid','cervix',
+  'pelvis','abdomen','thorax','chest','brain','spine','bone',
+  'tumor','tumour','lesion','nodule','cyst','mass','cancer','carcinoma','adenoma',
+  'scan','slide','dcm','study','series','patient','img','slice',
+  'axial','coronal','sagittal','flair','t1','t2','dwi','adc','gre','fse',
+  'medic','clinical','hospital','radiol','pathol','histo','sono'
+];
+var REJECT_INDICATORS=[
+  'selfie','photo','picture','profile','avatar','logo','icon','screenshot',
+  'wallpaper','background','banner','poster','meme','cartoon','illustration',
+  'drawing','painting','art','artwork','nature','landscape','travel',
+  'food','pet','dog','cat','animal','flower','car','vehicle','building',
+  'person','face','wedding','birthday','vacation','holiday','beach',
+  'mountain','movie','film','music','album','cover','thumbnail',
+  'youtube','instagram','facebook','twitter','whatsapp',
+  'samurai','warrior','fantasy','night','moon','sky','forest','jungle',
+  'sunset','sunrise','city','street','garden','park','lake','river','ocean',
+  'anime','game','gaming','render','cgi','digital art','3d'
+];
+
+/* ── BUG FIX #3 — showImgInfo stores dimensions internally but NEVER shows panel ── */
+function showImgInfo(file, img){
+  // Store values in hidden elements (for internal use / JS reads) but panel stays invisible
+  var mime=(file.type||'').toLowerCase();
+  var extMap={'image/jpeg':'JPEG','image/jpg':'JPEG','image/png':'PNG','image/gif':'GIF',
+    'image/webp':'WebP','image/bmp':'BMP','image/tiff':'TIFF','image/svg+xml':'SVG',
+    'image/dicom':'DICOM','image/x-dicom':'DICOM'};
+  var fmt=extMap[mime]||mime.replace('image/','').toUpperCase()||'Unknown';
+  if(!fmt||fmt==='Unknown'){
+    var nameParts=(file.name||'').split('.');
+    if(nameParts.length>1)fmt=nameParts[nameParts.length-1].toUpperCase();
+  }
+  var fmtEl=document.getElementById('img-info-format');
+  if(fmtEl)fmtEl.textContent=fmt||'Unknown';
+
+  var bytes=file.size;
+  var sizeStr=bytes>=1024*1024?(bytes/(1024*1024)).toFixed(2)+' MB':bytes>=1024?(bytes/1024).toFixed(1)+' KB':bytes+' B';
+  var szEl=document.getElementById('img-info-size');
+  if(szEl)szEl.textContent=sizeStr;
+
+  // BUG FIX #3 — Dimensions: read from img element's naturalWidth/naturalHeight
+  var dimEl=document.getElementById('img-info-dims');
+  if(dimEl){
+    if(img&&img.naturalWidth&&img.naturalHeight){
+      dimEl.textContent=img.naturalWidth+'×'+img.naturalHeight;
+    }else{
+      dimEl.textContent='N/A';
+    }
+  }
+  // Panel is hidden via CSS — do NOT set panel.style.display='block'
+}
+
+function hideImgInfo(){
+  // Reset internal values only; panel CSS keeps it invisible
+  var fmtEl=document.getElementById('img-info-format');
+  var szEl=document.getElementById('img-info-size');
+  var dimEl=document.getElementById('img-info-dims');
+  if(fmtEl){fmtEl.textContent='—';fmtEl.style.color='';}
+  if(szEl){szEl.textContent='—';szEl.style.color='';}
+  if(dimEl)dimEl.textContent='—';
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BUG FIX #2 — STRICT validateMedicalImage
+   Tightened thresholds so colour photographs are always rejected.
+   Key changes:
+     • Minimum pass score raised to 4 (was 3/1)
+     • colorfulRatio > 0.30 is now an automatic hard reject
+     • grayRatio minimum for positive points raised to 0.60 (was 0.55)
+     • rejectScore ≥ 1 triggers hard reject (was ≥ 2)
+     • Aspect-ratio bonus removed (not a reliable medical signal)
+   ───────────────────────────────────────────────────────────────────────── */
+function validateMedicalImage(file){
+  return new Promise(function(resolve){
+    var fname=file.name.toLowerCase().replace(/[_\-\.]/g,' ');
+    var fsize=file.size;
+    var ftype=file.type.toLowerCase();
+
+    if(!ftype.startsWith('image/')){
+      return resolve({ok:false,reason:'File is not an image.'});
+    }
+    if(fsize<=0){
+      return resolve({ok:false,reason:'File is empty (0 bytes). Please upload a valid image.'});
+    }
+    if(fsize<1024){
+      return resolve({ok:false,reason:'File is too small ('+fsize+' bytes). Minimum allowed size is 1 KB.'});
+    }
+    if(fsize>50*1024*1024){
+      return resolve({ok:false,reason:'File exceeds 50 MB limit. Please upload a smaller image.'});
+    }
+
+    var medScore=0,rejectScore=0;
+    MEDICAL_KEYWORDS.forEach(function(kw){if(fname.includes(kw))medScore++;});
+    REJECT_INDICATORS.forEach(function(kw){if(fname.includes(kw))rejectScore++;});
+
+    // Hard reject: any reject keyword in filename
+    if(rejectScore>=1){
+      return resolve({ok:false,reason:'This appears to be a non-medical image. Please upload a medical scan (X-Ray, MRI, CT, Ultrasound, or Histology).'});
+    }
+    // Fast-pass: strong medical filename match with no reject signals
+    if(medScore>=2&&rejectScore===0){
+      return resolve({ok:true,reason:'Medical image verified ✓'});
+    }
+
+    // Pixel-level analysis
+    var img=new Image();
+    var url=URL.createObjectURL(file);
+    img.onload=function(){
+      URL.revokeObjectURL(url);
+      var w=img.naturalWidth,h=img.naturalHeight;
+      var canvas=document.createElement('canvas');
+      var sampleW=Math.min(w,300),sampleH=Math.min(h,300);
+      canvas.width=sampleW;canvas.height=sampleH;
+      var ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,sampleW,sampleH);
+      var pixels;
+      try{
+        pixels=ctx.getImageData(0,0,sampleW,sampleH).data;
+      }catch(e){
+        // Canvas tainted — only accept if filename strongly suggests medical
+        return resolve(medScore>=2
+          ?{ok:true,reason:'Medical image accepted ✓',img:img,w:w,h:h}
+          :{ok:false,reason:'Cannot analyse image content. Please ensure it is a valid medical scan.'});
+      }
+
+      var totalPixels=sampleW*sampleH;
+      var sumR=0,sumG=0,sumB=0,grayCount=0,darkCount=0,colorfulCount=0;
+      for(var i=0;i<pixels.length;i+=4){
+        var r=pixels[i],g=pixels[i+1],b=pixels[i+2];
+        sumR+=r;sumG+=g;sumB+=b;
+        var lum=0.299*r+0.587*g+0.114*b;
+        var maxC=Math.max(r,g,b),minC=Math.min(r,g,b);
+        var sat=maxC===0?0:(maxC-minC)/maxC;
+        if(sat<0.12)grayCount++;          // stricter: was 0.15
+        if(lum<45)darkCount++;            // slightly stricter: was 40
+        if(sat>0.45&&lum>55&&lum<225)colorfulCount++;  // more sensitive: was 0.50, 60, 220
+      }
+
+      var grayRatio=grayCount/totalPixels;
+      var darkRatio=darkCount/totalPixels;
+      var colorfulRatio=colorfulCount/totalPixels;
+      var avgR=sumR/totalPixels,avgG=sumG/totalPixels,avgB=sumB/totalPixels;
+      var colorCast=Math.max(Math.abs(avgR-avgG),Math.abs(avgG-avgB),Math.abs(avgR-avgB));
+
+      // ── HARD REJECT: too colourful to be a medical scan ──
+      if(colorfulRatio>0.30){
+        return resolve({ok:false,reason:'Image appears to be a colour photograph, not a medical scan. Please upload an X-Ray, MRI, CT, Ultrasound, or Histology image.'});
+      }
+
+      var pixelMedScore=0;
+      if(grayRatio>0.70)pixelMedScore+=4;        // very high grayscale — strong signal
+      else if(grayRatio>0.60)pixelMedScore+=3;   // was 0.55 → +3
+      else if(grayRatio>0.45)pixelMedScore+=1;   // was 0.35 → +1
+      if(darkRatio>0.35)pixelMedScore+=2;         // was 0.30
+      if(colorCast<14)pixelMedScore+=1;           // was 18
+      if(colorfulRatio>0.18)pixelMedScore-=4;     // was 0.40
+      if(colorfulRatio>0.10)pixelMedScore-=2;     // additional penalty for moderate colour
+
+      var totalScore=pixelMedScore+(medScore*2)-(rejectScore*3);
+
+      // Strict minimum: score must be >= 4 to pass (was 3 or 1)
+      if(totalScore>=4){
+        resolve({ok:true,reason:'Medical image verified ✓ (grayscale: '+Math.round(grayRatio*100)+'%)',img:img,w:w,h:h});
+      }else{
+        var hint=colorfulRatio>0.15
+          ?'Image appears to be a colour photograph, not a medical scan.'
+          :'Image does not meet medical scan criteria.';
+        resolve({ok:false,reason:hint+' Please upload an X-Ray, MRI, CT, Ultrasound, or Histology image.'});
+      }
+    };
+    img.onerror=function(){
+      URL.revokeObjectURL(url);
+      resolve({ok:false,reason:'Could not read image file.'});
+    };
+    img.src=url;
+  });
+}
+
+function setValStatus(state,msg){
+  var el=document.getElementById('val-status');
+  var spinner=document.getElementById('val-spinner');
+  var msgEl=document.getElementById('val-msg');
+  el.className='img-validation-status';
+  spinner.style.display='none';
+  if(state==='hidden'){el.style.display='none';return;}
+  el.classList.add(state);
+  if(state==='checking'){spinner.style.display='block';}
+  msgEl.textContent=msg;
+}
+
+/* ── BUG FIX #4 — setUploadZoneState: icon is 🔬 (neutral), ✅ only on valid,
+   🚫 on invalid. No ✅ shown prematurely. ── */
+function setUploadZoneState(state){
+  var zone=document.getElementById('upload-zone');
+  zone.classList.remove('invalid','valid');
+  var icon=document.getElementById('upload-icon');
+  var btn=document.getElementById('analyze-btn');
+  var hint=document.getElementById('analyze-hint');
+  if(state==='valid'){
+    zone.classList.add('valid');
+    icon.textContent='✅';
+    btn.disabled=false;
+    hint.textContent='Medical image validated — ready to analyze';
+    hint.style.color='var(--accent2)';
+  }else if(state==='invalid'){
+    zone.classList.add('invalid');
+    icon.textContent='🚫';
+    btn.disabled=true;
+    hint.textContent='Invalid image — please upload a medical scan';
+    hint.style.color='var(--danger)';
+  }else{
+    icon.textContent='🔬';   // always neutral on reset — never ✅ by default
+    btn.disabled=true;
+    hint.textContent='Upload and validate a medical image to enable analysis';
+    hint.style.color='var(--muted)';
+  }
+}
+
+async function handleFileSelect(file){
+  if(!file)return;
+  imageValidated=false;
+  setUploadZoneState('neutral');
+  setValStatus('hidden','');
+  hideImgInfo();
+  var preview=document.getElementById('preview-img');
+  preview.style.display='none';preview.src='';
+  setValStatus('checking','Analysing image for medical scan characteristics...');
+  var result=await validateMedicalImage(file);
+  if(result.ok){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      preview.src=e.target.result;
+      preview.style.display='block';
+      // Store info internally (panel never shown)
+      showImgInfo(file, result.img||{naturalWidth:result.w,naturalHeight:result.h});
+    };
+    reader.readAsDataURL(file);
+    imageValidated=true;
+    setValStatus('valid','✅ '+result.reason);
+    setUploadZoneState('valid');
+    toast('Medical image validated — ready to analyze','success');
+  }else{
+    // Store info internally but reset after delay — panel never shown
+    showImgInfo(file, null);
+    // Reset the file input so re-upload works cleanly
+    document.getElementById('file-input').value='';
+    imageValidated=false;
+    setValStatus('invalid','🚫 '+result.reason);
+    setUploadZoneState('invalid');
+    toast('Invalid image rejected: '+result.reason,'error');
+    setTimeout(function(){
+      setUploadZoneState('neutral');
+      hideImgInfo();
+    },3000);
+  }
+}
+
+document.getElementById('file-input').addEventListener('change',function(){handleFileSelect(this.files[0]);});
+var zone=document.getElementById('upload-zone');
+zone.addEventListener('dragover',function(e){e.preventDefault();zone.classList.add('dragover');});
+zone.addEventListener('dragleave',function(){zone.classList.remove('dragover');});
+zone.addEventListener('drop',function(e){
+  e.preventDefault();zone.classList.remove('dragover');
+  var f=e.dataTransfer.files[0];
+  if(f){try{var dt=new DataTransfer();dt.items.add(f);document.getElementById('file-input').files=dt.files;}catch(e){}handleFileSelect(f);}
+});
+
+function normaliseStage(raw){
+  var r=(raw||'').toLowerCase().replace(/-/g,' ');
+  if(r.includes('critical'))           return 'Critical';
+  if(r.includes('1')||r==='stage i')   return 'Stage 1';
+  if(r.includes('2')||r==='stage ii')  return 'Stage 2';
+  if(r.includes('3')||r==='stage iii') return 'Stage 3';
+  if(r.includes('4')||r==='stage iv')  return 'Stage 4';
+  if(r==='none'||r==='normal')         return 'None';
+  return raw;
+}
+
+function buildInfoHTML(dataObj){
+  var html='';
+  (dataObj.sections||[]).forEach(function(s){
+    html+='<div class="info-section '+(s.color||'')+'"><h4>'+s.label+'</h4>'+(s.body.charAt(0)==='<'?s.body:'<p>'+s.body+'</p>')+'</div>';
+  });
+  html+='<div class="info-note">⚠ All treatment decisions must be made by a certified oncologist. This information is for reference only.</div>';
+  return html;
+}
+
+function stripSections(dataObj){
+  if(!dataObj||!dataObj.sections)return '';
+  var out='';
+  (dataObj.sections||[]).forEach(function(s){
+    out+=s.label+'\n';
+    var tmp=document.createElement('div');
+    tmp.innerHTML=s.body;
+    var lines=tmp.textContent.replace(/\n\s*\n/g,'\n').split('\n').map(function(l){return l.trim();}).filter(Boolean);
+    lines.forEach(function(l){out+='  • '+l+'\n';});
+    out+='\n';
+  });
+  return out;
+}
+
+function buildReportText(isCritical){
+  if(!lastResult)return 'No diagnosis data available.';
+  var p=lastPatient||{};
+  var ct=p.gender==='Male'?'Testicular Cancer':'Gynecological Cancer';
+  var ck=p.gender==='Male'?'testicular':'gynecological';
+  var ns=normaliseStage((lastResult.stage||'').trim());
+  var isCrit=(lastResult.stage||'').toLowerCase().includes('critical');
+  var isNormal=(lastResult.type||'').toLowerCase()==='normal';
+
+  var treatmentSection='';
+  if(!isNormal&&!isCrit&&TREATMENT_DATA[ck]&&TREATMENT_DATA[ck][ns]){
+    treatmentSection='\nTREATMENT PLAN\n--------------\n'+stripSections(TREATMENT_DATA[ck][ns]);
+  }
+  var dietSection='';
+  if(!isNormal&&DIET_DATA[ck]){
+    dietSection='DIET PLAN\n---------\n'+stripSections(DIET_DATA[ck]);
+  }
+  var medsSection='';
+  if(!isNormal&&MEDICINE_DATA[ck]){
+    medsSection='MEDICINES\n---------\n'+stripSections(MEDICINE_DATA[ck]);
+  }
+
+  return 'GYNECOLOGICAL & TESTICULAR CANCER PREDICTION AI\n'
+    +(isCritical?'🚨 CRITICAL STAGE ALERT REPORT 🚨':'DIAGNOSTIC REPORT')
+    +'\n================================================\n'
+    +'Patient ID   : '+p.id
+    +'\nName         : '+p.name
+    +'\nAge          : '+p.age
+    +'\nGender       : '+p.gender
+    +'\nPhone        : '+p.contact
+    +'\nEmail        : '+p.email
+    +'\n\nDIAGNOSIS\n---------'
+    +'\nCancer Type  : '+ct
+    +'\nStage        : '+(lastResult.stage||'N/A')
+    +'\nConfidence   : '+lastResult.confidence+'%\n\n'
+    +(isCritical?'⚠ CRITICAL STAGE — IMMEDIATE INTERVENTION REQUIRED\nUrgent oncology referral and hospitalisation needed.\n\n':'')
+    +treatmentSection
+    +dietSection
+    +medsSection
+    +'Generated on : '+new Date().toLocaleString()
+    +'\nSystem       : GT Cancer Prediction AI v2.4'
+    +'\n================================================';
+}
+
+function capturePatient(){
+  lastPatient={
+    id:document.getElementById('p-id').value||'PAT-DEMO',
+    name:document.getElementById('p-name').value||'Demo Patient',
+    age:document.getElementById('p-age').value||'N/A',
+    gender:document.getElementById('p-gender').value||'N/A',
+    contact:document.getElementById('p-contact').value||'N/A',
+    email:document.getElementById('p-email').value||'N/A'
+  };
+}
+
+function savePatientReport(data){
+  var p=lastPatient;
+  var ct=p.gender==="Male"?"Testicular Cancer":"Gynecological Cancer";
+  var ns=normaliseStage((data.stage||"").trim());
+  var isCrit=(data.stage||"").toLowerCase().includes("critical");
+  var isNormal=(data.type||"").toLowerCase()==="normal";
+  var record={id:p.id,name:p.name,age:p.age,gender:p.gender,contact:p.contact,email:p.email,cancerType:ct,stage:data.stage||"N/A",stageNorm:isNormal?"Normal":isCrit?"Critical":ns,confidence:data.confidence,reportText:buildReportText(isCrit),savedAt:new Date().toLocaleString()};
+  var all=[];
+  try{var raw=localStorage.getItem("gtai_saved_reports");if(raw)all=JSON.parse(raw);}catch(e){}
+  all=all.filter(function(r){return r.id!==p.id;});
+  all.unshift(record);
+  try{localStorage.setItem("gtai_saved_reports",JSON.stringify(all));}catch(e){}
+  refreshReportDropdown();
+  toast("Patient report saved to Report Center","success");
+}
+
+function loadSavedReports(){
+  try{var raw=localStorage.getItem("gtai_saved_reports");return raw?JSON.parse(raw):[];}catch(e){return [];}
+}
+
+function refreshReportDropdown(){
+  var sel=document.getElementById("report-patient");
+  sel.innerHTML='<option value="">Select patient...</option>';
+  var all=loadSavedReports();
+  all.forEach(function(r,i){
+    var opt=document.createElement("option");
+    opt.value=i;
+    var stageTag=r.stageNorm==="Normal"?"Normal":r.stageNorm==="Critical"?"Critical":r.stageNorm;
+    opt.textContent=r.id+" - "+r.name+" ("+stageTag+")";
+    sel.appendChild(opt);
+  });
+}
+
+function generatePatientId(){
+  var now=new Date();
+  var yyyy=now.getFullYear();
+  var mm=String(now.getMonth()+1).padStart(2,'0');
+  var dd=String(now.getDate()).padStart(2,'0');
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var rand='';
+  for(var i=0;i<4;i++)rand+=chars[Math.floor(Math.random()*chars.length)];
+  return 'PAT-'+yyyy+mm+dd+'-'+rand;
+}
+
+function setNewPatientId(){
+  var id=generatePatientId();
+  document.getElementById('p-id').value=id;
+  saveLS('gtai_last_pid',id);
+}
+setNewPatientId();
+
+document.getElementById('btn-regen-id').addEventListener('click',function(){
+  setNewPatientId();
+  var svg=this.querySelector('svg');
+  svg.style.transition='transform 0.45s cubic-bezier(.4,0,.2,1)';
+  svg.style.transform='rotate(360deg)';
+  setTimeout(function(){svg.style.transition='';svg.style.transform='rotate(0deg)';},460);
+  toast('New Patient ID generated','info');
+});
+
+document.getElementById('analyze-btn').addEventListener('click',async function(){
+  if(!imageValidated){toast('Please upload a valid medical image first.','error');return;}
+  var gender=document.getElementById('p-gender').value;
+  if(!gender){toast('Please select gender before analysis.','error');return;}
+
+  var btn=document.getElementById('analyze-btn');
+  var spin=document.getElementById('spin');
+  btn.disabled=true;spin.style.display='block';
+
+  var formData=new FormData();
+  formData.append('image',document.getElementById('file-input').files[0]);
+  formData.append('gender',gender.toLowerCase());
+
+  try{
+    var res=await fetch('/predict',{method:'POST',body:formData});
+    var data=await res.json();
+    if(!res.ok){
+      toast('Error: '+(data.error||'Prediction failed. Please try again.'),'error');
+      btn.disabled=false;spin.style.display='none';
+      return;
+    }
+    capturePatient();lastResult=data;showResult(data);savePatientReport(data);
+  }catch(e){
+    toast('Cannot connect to backend. Is Flask running on port 5000?','error');
+  }finally{
+    btn.disabled=false;spin.style.display='none';
+  }
+});
+
+function showResult(data){
+  document.getElementById('no-result-msg').style.display='none';
+  var panel=document.getElementById('result-panel');
+  panel.style.display='block';
+  var gender=lastPatient.gender;
+  var stage=(data.stage||'').trim();
+  var isCritical=stage.toLowerCase().includes('critical');
+  var ns=normaliseStage(stage);
+  // BUG FIX: isNormal covers all normal signals:
+  //   • data.type === 'normal'
+  //   • stage === 'none' / 'normal'  (backend sends "None" for healthy scans)
+  //   • ns === 'None'                (after normaliseStage maps it)
+  var isNormal=data.type.toLowerCase()==='normal'
+    ||stage.toLowerCase()==='none'
+    ||stage.toLowerCase()==='normal'
+    ||ns==='None';
+  panel.className='';
+  if(isCritical)panel.classList.add('s-critical');
+  else if(isNormal)panel.classList.add('s-normal');
+  else if(ns==='Stage 1')panel.classList.add('s-1');
+  else if(ns==='Stage 2')panel.classList.add('s-2');
+  else if(ns==='Stage 3')panel.classList.add('s-3');
+  else if(ns==='Stage 4')panel.classList.add('s-4');
+
+  var cancerLabel=gender==='Male'?'Testicular Cancer':'Gynecological Cancer';
+  document.getElementById('res-type').textContent=cancerLabel;
+
+  var badge=document.getElementById('res-stage-badge');
+  var stageIcons={'Stage 1':'🟢 ','Stage 2':'🟠 ','Stage 3':'🟡 ','Stage 4':'🔴 '};
+  badge.textContent=isNormal?'✓ No Cancer Detected':isCritical?'🚨 CRITICAL STAGE':(stageIcons[ns]||'')+ns;
+  badge.className='result-stage-badge '+(isNormal?'sb-normal':isCritical?'sb-critical':ns==='Stage 1'?'sb-1':ns==='Stage 2'?'sb-2':ns==='Stage 3'?'sb-3':'sb-4');
+
+  var pct=data.confidence;
+  var cb=document.getElementById('conf-bar');
+  // Reset ALL inline styles first so a previous run's colour never persists
+  cb.style.cssText='';
+  setTimeout(function(){cb.style.width=pct+'%';},50);
+  // BUG FIX: stage==='None' (backend normal result) OR isNormal → always white bar
+  if(isNormal||ns==='None'){
+    cb.style.background='#ffffff';
+    cb.style.border='1px solid #d0dce8';
+  }else{
+    cb.style.border='none';
+    cb.style.background=isCritical
+      ?'linear-gradient(90deg,#6a0018,#b00030)'
+      :(ns==='Stage 1')?'linear-gradient(90deg,#0e9a72,#2ad9a0)'
+      :(ns==='Stage 2')?'linear-gradient(90deg,#c97d15,#f0a830)'
+      :(ns==='Stage 3')?'linear-gradient(90deg,#9a8800,#d4c000)'
+      :'linear-gradient(90deg,#d94060,#ff6080)';
+  }
+
+  document.getElementById('conf-label').textContent='Confidence score: '+pct+'%';
+  document.getElementById('normal-alert').style.display=isNormal?'block':'none';
+  var cbox=document.getElementById('critical-box');
+  cbox.style.display=isCritical?'block':'none';
+  if(isCritical){
+    document.getElementById('critical-box-msg').innerHTML='<strong>Patient:</strong> '+lastPatient.name+' ('+gender+', Age '+lastPatient.age+')<br><strong>Cancer:</strong> '+cancerLabel+' — <span style="color:#ff5070;font-weight:700;">CRITICAL STAGE</span><br><br>Immediate medical intervention is required. An urgent alert has been sent to the registered oncology email.<br><strong>Only the Send Report option is available at this stage.</strong>';
+  }
+
+  var se=document.getElementById('res-status');
+  var tm={
+    normal:{t:'✓ Clear',b:'#c0eedd',c:'#0a6040'},
+    critical:{t:'🚨 Critical',b:'#5a0015',c:'#ffb0c0'},
+    s1:{t:'🟢 Stage 1',b:'#bef0d8',c:'#0a6640'},
+    s2:{t:'🟠 Stage 2',b:'#fde8b8',c:'#7a4800'},
+    s3:{t:'🟡 Stage 3',b:'#f9f8a0',c:'#666000'},
+    s4:{t:'🔴 Stage 4',b:'#f8b8c8',c:'#7a0820'}
+  };
+  // BUG FIX: tk must use isNormal first — prevents "None" stage falling through to 's4'
+  var tk=isNormal?'normal':isCritical?'critical':ns==='Stage 1'?'s1':ns==='Stage 2'?'s2':ns==='Stage 3'?'s3':'s4';
+  var ts=tm[tk];
+  se.textContent=ts.t;
+  se.style.cssText='background:'+ts.b+';color:'+ts.c+';border:none;font-family:"JetBrains Mono",monospace;font-size:10px;padding:3px 9px;border-radius:20px;';
+
+  renderActionButtons(gender,stage,isCritical,isNormal);
+  document.getElementById('post-action-panel').style.display='block';
+  toast(isCritical?'🚨 CRITICAL stage detected — alert triggered!':isNormal?'✓ Normal — no cancer detected':'Analysis complete — '+cancerLabel+' '+ns+' ('+pct+'%)',isCritical?'error':isNormal?'success':'info');
+}
+
+function renderActionButtons(gender,stage,isCritical,isNormal){
+  var grid=document.getElementById('post-actions-grid');
+  var tag=document.getElementById('action-panel-tag');
+  var title=document.getElementById('action-panel-title');
+  grid.innerHTML='';
+  if(isCritical){
+    grid.className='post-actions-grid critical-mode';
+    title.textContent='🚨 Urgent Action Required';tag.textContent='Critical Stage';
+    tag.style.cssText='background:var(--danger-light);color:var(--danger);border:1px solid rgba(217,64,96,.25);font-family:"JetBrains Mono",monospace;font-size:10px;padding:3px 9px;border-radius:20px;';
+    var b=document.createElement('div');
+    b.className='pac-btn pb-critical-send';b.dataset.action='critical-email';
+    b.innerHTML='<div class="pac-btn-icon">🚨</div><span>Send Critical Alert Report<br><small style="font-weight:400;color:#a03040;">Immediately notify oncology team</small></span>';
+    grid.appendChild(b);
+  }else{
+    grid.className='post-actions-grid';
+    title.textContent='Actions';tag.textContent=isNormal?'Normal Result':'Post-Diagnosis';tag.style.cssText='';
+    var ck=gender==='Male'?'testicular':'gynecological';
+    var sk=normaliseStage(stage);
+    var list=isNormal
+      ?[
+          {c:'pb-pdf',  a:'pdf',   i:'📄',l:'Export PDF'},
+          {c:'pb-email',a:'email', i:'✉️',l:'Send Report'},
+          {c:'pb-copy', a:'copy',  i:'📋',l:'Copy Report'}
+        ]
+      :[
+          {c:'pb-treatment',a:'treatment',i:'💊',l:'Treatment Plan'},
+          {c:'pb-diet',     a:'diet',     i:'🥗',l:'Diet Plan'},
+          {c:'pb-meds',     a:'meds',     i:'🧪',l:'Medicines'},
+          {c:'pb-email',    a:'email',    i:'✉️',l:'Send Report'},
+          {c:'pb-pdf',      a:'pdf',      i:'📄',l:'Export PDF'},
+          {c:'pb-copy',     a:'copy',     i:'📋',l:'Copy Report'}
+        ];
+    list.forEach(function(x){
+      var el=document.createElement('div');
+      el.className='pac-btn '+x.c;el.dataset.action=x.a;el.dataset.cancer=ck;el.dataset.stage=sk;
+      el.innerHTML='<div class="pac-btn-icon">'+x.i+'</div><span>'+x.l+'</span>';
+      grid.appendChild(el);
+    });
+  }
+}
+
+document.getElementById('post-actions-grid').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-action]');if(!btn)return;
+  var a=btn.dataset.action,ck=btn.dataset.cancer,sk=btn.dataset.stage;
+  if(a==='treatment')showInfoModal(TREATMENT_DATA[ck]&&TREATMENT_DATA[ck][sk]);
+  else if(a==='diet')showInfoModal(DIET_DATA[ck]);
+  else if(a==='meds')showInfoModal(MEDICINE_DATA[ck]);
+  else if(a==='email')openEmailModal(false);
+  else if(a==='critical-email')openEmailModal(true);
+  else if(a==='pdf')exportPDF();
+  else if(a==='copy')copyReport();
+});
+
+function showInfoModal(dataObj){
+  if(!dataObj){toast('Data not found','error');return;}
+  document.getElementById('info-modal-title').textContent=dataObj.title||'';
+  document.getElementById('info-modal-body').innerHTML=buildInfoHTML(dataObj);
+  document.getElementById('info-modal').classList.add('open');
+}
+function closeInfoModal(){document.getElementById('info-modal').classList.remove('open');}
+document.getElementById('btn-close-info').addEventListener('click',closeInfoModal);
+document.getElementById('info-modal').addEventListener('click',function(e){if(e.target===this)closeInfoModal();});
+
+function openEmailModal(isCritical){
+  var ch=document.getElementById('critical-email-header');
+  var sn=document.getElementById('send-btn-normal');
+  var sc=document.getElementById('send-btn-critical');
+  var ti=document.getElementById('email-modal-title');
+  if(isCritical){
+    ti.textContent='🚨 Send Critical Alert Report';
+    ch.style.display='flex';sn.style.display='none';sc.style.display='flex';
+    document.getElementById('email-input').value=ALERT_EMAIL;
+  }else{
+    ti.textContent='✉ Send Report via Email';
+    ch.style.display='none';sn.style.display='flex';sc.style.display='none';
+    var emailVal=(lastPatient&&lastPatient.email)||'';
+    document.getElementById('email-input').value=emailVal&&emailVal!=='N/A'?emailVal:'';
+  }
+  document.getElementById('email-body').value=lastResult?buildReportText(isCritical):'';
+  document.getElementById('email-modal').classList.add('open');
+}
+function closeEmailModal(){document.getElementById('email-modal').classList.remove('open');}
+
+async function sendEmail(){
+  var email=document.getElementById('email-input').value.trim();
+  var body=document.getElementById('email-body').value.trim();
+  if(!email){toast('Enter a recipient email address','error');return;}
+  try{
+    var res=await fetch('/send-report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,report:body})});
+    var data=await res.json();
+    if(data.success){toast('Report sent to '+email,'success');closeEmailModal();}
+    else toast('Failed: '+data.message,'error');
+  }catch(e){toast('Email failed — check backend connection','error');closeEmailModal();}
+}
+
+document.getElementById('send-btn-normal').addEventListener('click',sendEmail);
+document.getElementById('send-btn-critical').addEventListener('click',sendEmail);
+document.getElementById('btn-cancel-email').addEventListener('click',closeEmailModal);
+document.getElementById('email-modal').addEventListener('click',function(e){if(e.target===this)closeEmailModal();});
+
+function exportPDF(){
+  if(!lastResult){toast('Run a diagnosis first.','error');return;}
+  if(typeof window.jspdf==='undefined'&&typeof jsPDF==='undefined'){toast('PDF library not loaded yet — try again in a moment.','warn');return;}
+  try{
+    var jsPDFLib=(window.jspdf&&window.jspdf.jsPDF)?window.jspdf.jsPDF:jsPDF;
+    var doc=new jsPDFLib({orientation:'portrait',unit:'mm',format:'a4'});
+    var p=lastPatient||{};
+    var ns=normaliseStage(lastResult.stage||'');
+    var isCrit=(lastResult.stage||'').toLowerCase().includes('critical');
+    var cancerLabel=p.gender==='Male'?'Testicular Cancer':'Gynecological Cancer';
+    var ck=p.gender==='Male'?'testicular':'gynecological';
+    var W=210,margin=18,contentW=W-margin*2,y=0;
+    function hex(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return [r,g,b];}
+    var COL={accent:hex('#1a6fa8'),accent2:hex('#0e9a72'),danger:hex('#d94060'),warn:hex('#c97d15'),dark:hex('#1a2535'),muted:hex('#6b8299'),light:hex('#f5f8fc'),border:hex('#d0dce8'),white:[255,255,255]};
+    var stageCol=isCrit?hex('#6a0018'):ns==='Stage 1'?hex('#0e9a72'):ns==='Stage 2'?hex('#c97d15'):ns==='Stage 3'?hex('#9a8800'):ns==='Stage 4'?hex('#d94060'):COL.accent2;
+    doc.setFillColor.apply(doc,COL.accent);doc.rect(0,0,W,38,'F');
+    doc.setFillColor(26,154,138);doc.rect(W*0.55,0,W*0.45,38,'F');
+    doc.setTextColor.apply(doc,COL.white);doc.setFont('helvetica','bold');doc.setFontSize(17);
+    doc.text('ONCOCARE AI MEDICAL REPORT',margin,16);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);
+    doc.text('Gynecological & Testicular Cancer Prediction AI  v2.4',margin,23);
+    doc.text('Generated: '+new Date().toLocaleString(),margin,29);
+    y=46;
+    doc.setFillColor.apply(doc,COL.light);doc.setDrawColor.apply(doc,COL.border);doc.setLineWidth(0.4);
+    doc.roundedRect(margin,y,contentW,48,3,3,'FD');
+    doc.setFillColor.apply(doc,COL.accent);doc.roundedRect(margin,y,3,48,1.5,1.5,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor.apply(doc,COL.accent);
+    doc.text('PATIENT INFORMATION',margin+7,y+9);
+    doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor.apply(doc,COL.dark);
+    var col1x=margin+7,col2x=margin+contentW/2;
+    doc.setFont('helvetica','bold');doc.text('Patient ID:',col1x,y+18);doc.setFont('helvetica','normal');doc.text(p.id||'N/A',col1x+22,y+18);
+    doc.setFont('helvetica','bold');doc.text('Name:',col1x,y+25);doc.setFont('helvetica','normal');doc.text(p.name||'N/A',col1x+22,y+25);
+    doc.setFont('helvetica','bold');doc.text('Age:',col2x,y+18);doc.setFont('helvetica','normal');doc.text(String(p.age||'N/A'),col2x+14,y+18);
+    doc.setFont('helvetica','bold');doc.text('Gender:',col2x,y+25);doc.setFont('helvetica','normal');doc.text(p.gender||'N/A',col2x+18,y+25);
+    doc.setFont('helvetica','bold');doc.text('Phone:',col1x,y+32);doc.setFont('helvetica','normal');doc.text(p.contact||'N/A',col1x+22,y+32);
+    doc.setFont('helvetica','bold');doc.text('Email:',col2x,y+32);doc.setFont('helvetica','normal');doc.text(p.email||'N/A',col2x+18,y+32);
+    y+=58;
+    doc.setFillColor.apply(doc,isCrit?[30,0,8]:stageCol.map(function(v){return Math.min(255,v+210);}));
+    doc.setDrawColor.apply(doc,stageCol);doc.setLineWidth(0.6);
+    doc.roundedRect(margin,y,contentW,50,3,3,'FD');
+    doc.setFillColor.apply(doc,stageCol);doc.roundedRect(margin,y,4,50,2,2,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor.apply(doc,isCrit?[255,80,112]:stageCol);
+    doc.text('DIAGNOSIS RESULT',margin+9,y+10);
+    doc.setFontSize(14);doc.text(cancerLabel,margin+9,y+21);
+    var badgeText=isCrit?'  CRITICAL STAGE  ':'  '+ns+'  ';
+    doc.setFillColor.apply(doc,stageCol);doc.roundedRect(margin+9,y+24,doc.getTextWidth(badgeText)+2,8,2,2,'F');
+    doc.setTextColor.apply(doc,COL.white);doc.setFontSize(9);doc.text(badgeText.trim(),margin+12,y+30);
+    doc.setFillColor.apply(doc,COL.border);doc.roundedRect(margin+9,y+36,contentW-18,5,1,1,'F');
+    var confW=((lastResult.confidence||0)/100)*(contentW-18);
+    doc.setFillColor.apply(doc,stageCol);doc.roundedRect(margin+9,y+36,confW,5,1,1,'F');
+    doc.setTextColor.apply(doc,isCrit?[255,80,112]:stageCol);doc.setFont('helvetica','normal');doc.setFontSize(8);
+    doc.text('Confidence: '+(lastResult.confidence||0)+'%',margin+9,y+46);
+    y+=60;
+    if(isCrit){
+      doc.setFillColor(42,0,8);doc.setDrawColor(138,0,37);doc.setLineWidth(1);
+      doc.roundedRect(margin,y,contentW,22,3,3,'FD');
+      doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(255,80,112);
+      doc.text('CRITICAL STAGE — IMMEDIATE MEDICAL INTERVENTION REQUIRED',margin+6,y+9);
+      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(220,140,150);
+      doc.text('This patient requires urgent oncology referral and hospitalisation. Please act immediately.',margin+6,y+17);
+      y+=30;
+    }
+    function stripHtml(html){var tmp=document.createElement('div');tmp.innerHTML=html;return tmp.textContent||tmp.innerText||'';}
+    function addSection(title,accentCol,dataObj){
+      if(!dataObj)return;
+      if(y>250){doc.addPage();y=18;}
+      doc.setFillColor.apply(doc,accentCol);doc.roundedRect(margin,y,contentW,10,2,2,'F');
+      doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor.apply(doc,COL.white);
+      doc.text(title,margin+5,y+7);y+=14;
+      (dataObj.sections||[]).forEach(function(sec){
+        if(y>265){doc.addPage();y=18;}
+        var labelCol=sec.color==='green'?COL.accent2:sec.color==='orange'?COL.warn:sec.color==='red'?COL.danger:COL.accent;
+        doc.setFillColor.apply(doc,labelCol.map(function(v){return Math.min(255,v+195);}));
+        doc.setDrawColor.apply(doc,labelCol);doc.setLineWidth(0.3);
+        doc.roundedRect(margin,y,contentW,8,1.5,1.5,'FD');
+        doc.setFillColor.apply(doc,labelCol);doc.roundedRect(margin,y,3,8,1,1,'F');
+        doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor.apply(doc,labelCol);
+        doc.text(sec.label,margin+6,y+5.5);y+=11;
+        var rawText=stripHtml(sec.body);
+        var lines=rawText.split('\n').map(function(l){return l.trim();}).filter(Boolean);
+        doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor.apply(doc,COL.dark);
+        lines.forEach(function(line){
+          if(y>270){doc.addPage();y=18;}
+          var wrapped=doc.splitTextToSize('   • '+line,contentW-8);
+          wrapped.forEach(function(wl,wi){
+            if(y>270){doc.addPage();y=18;}
+            doc.text(wi===0?wl:'      '+wl.trim(),margin+4,y);y+=5;
+          });
+        });
+        y+=3;
+      });
+      if(y>270){doc.addPage();y=18;}
+      doc.setFillColor(255,248,230);doc.setDrawColor.apply(doc,COL.warn);doc.setLineWidth(0.3);
+      doc.roundedRect(margin,y,contentW,8,1.5,1.5,'FD');
+      doc.setFont('helvetica','italic');doc.setFontSize(7.5);doc.setTextColor.apply(doc,COL.warn);
+      doc.text('All treatment decisions must be made by a certified oncologist. For reference only.',margin+4,y+5.5);
+      y+=14;
+    }
+    var isNormalResult=(lastResult.type||'').toLowerCase()==='normal';
+    if(!isNormalResult){
+      if(TREATMENT_DATA[ck]&&TREATMENT_DATA[ck][ns])addSection('TREATMENT PLAN — '+cancerLabel.toUpperCase()+' · '+ns.toUpperCase(),COL.accent,TREATMENT_DATA[ck][ns]);
+      if(DIET_DATA[ck])addSection('DIET PLAN — '+cancerLabel.toUpperCase(),COL.accent2,DIET_DATA[ck]);
+      if(MEDICINE_DATA[ck])addSection('MEDICINES — '+cancerLabel.toUpperCase(),COL.warn,MEDICINE_DATA[ck]);
+    }
+    var totalPages=doc.internal.getNumberOfPages();
+    for(var pg=1;pg<=totalPages;pg++){
+      doc.setPage(pg);doc.setFillColor.apply(doc,COL.light);doc.rect(0,288,W,9,'F');
+      doc.setDrawColor.apply(doc,COL.border);doc.setLineWidth(0.3);doc.line(margin,288,W-margin,288);
+      doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor.apply(doc,COL.muted);
+      doc.text('ONCOCARE AI  ·  Gynecological & Testicular Cancer Prediction AI  ·  Confidential Medical Report',margin,293);
+      doc.text('Page '+pg+' of '+totalPages,W-margin,293,{align:'right'});
+    }
+    var fname='Report_'+(p.id||'patient')+'_'+(ns||'diagnosis').replace(/\s+/g,'_')+'.pdf';
+    doc.save(fname);toast('PDF exported successfully — '+fname,'success');
+  }catch(err){console.error('PDF error:',err);toast('PDF generation failed: '+err.message,'error');}
+}
+
+function copyReport(){
+  if(!lastResult){toast('Run a diagnosis first.','error');return;}
+  var text=buildReportText(false);
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){toast('Report copied to clipboard!','success');});}
+  else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Report copied to clipboard!','success');}
+}
+
+function dashAction(type){
+  if(!lastResult){toast('Run a diagnosis first to get personalised information.','warn');setTab('diagnose');return;}
+  var isNormal=(lastResult.type||'').toLowerCase()==='normal';
+  if(isNormal&&(type==='treatment'||type==='diet'||type==='meds')){
+    toast('No cancer detected — treatment, diet and medicine plans are not applicable.','info');return;
+  }
+  var ck=(lastPatient&&lastPatient.gender)==='Male'?'testicular':'gynecological';
+  var sk=normaliseStage((lastResult&&lastResult.stage)||'');
+  if(type==='treatment')showInfoModal(TREATMENT_DATA[ck]&&TREATMENT_DATA[ck][sk]);
+  else if(type==='diet')showInfoModal(DIET_DATA[ck]);
+  else if(type==='meds')showInfoModal(MEDICINE_DATA[ck]);
+}
+
+document.getElementById('dab-treatment').addEventListener('click',function(){dashAction('treatment');});
+document.getElementById('dab-diet').addEventListener('click',function(){dashAction('diet');});
+document.getElementById('dab-medicines').addEventListener('click',function(){dashAction('meds');});
+document.getElementById('dab-email').addEventListener('click',function(){openEmailModal(false);});
+document.getElementById('dab-pdf').addEventListener('click',exportPDF);
+document.getElementById('dab-copy').addEventListener('click',copyReport);
+
+var _rvRecord=null;
+function getSelectedRecord(){
+  var sel=document.getElementById("report-patient");
+  var idx=parseInt(sel.value);
+  if(isNaN(idx)||sel.value===""){return null;}
+  var all=loadSavedReports();
+  return all[idx]||null;
+}
+
+function openReportViewer(record){
+  _rvRecord=record;
+  var stageTag=record.stageNorm==='Normal'?'Normal':record.stageNorm==='Critical'?'Critical':record.stageNorm;
+  document.getElementById('rv-modal-title').textContent='Report — '+record.name;
+  var meta=document.getElementById('rv-patient-meta');
+  var stageBg=record.stageNorm==='Normal'?'background:var(--accent2-light);color:var(--accent2)':record.stageNorm==='Critical'?'background:var(--danger-light);color:var(--danger)':'background:var(--warn-light);color:var(--warn)';
+  var pill='padding:3px 10px;border-radius:20px;font-size:11px;';
+  meta.innerHTML=
+    '<span style="'+pill+'background:var(--accent-light);color:var(--accent);font-family:JetBrains Mono,monospace;">'+record.id+'</span> '+
+    '<span style="'+pill+'background:var(--surface2);color:var(--text2);">'+record.name+'</span> '+
+    '<span style="'+pill+'background:var(--surface2);color:var(--text2);">Age: '+record.age+'</span> '+
+    '<span style="'+pill+'background:var(--surface2);color:var(--text2);">'+record.gender+'</span> '+
+    '<span style="'+pill+'font-weight:700;'+stageBg+'">'+stageTag+'</span> '+
+    '<span style="'+pill+'background:var(--surface2);color:var(--muted);font-size:10px;">'+record.savedAt+'</span>';
+  document.getElementById('rv-report-text').textContent=record.reportText||'No report text available.';
+  document.getElementById('report-view-modal').classList.add('open');
+}
+
+function closeReportViewer(){document.getElementById("report-view-modal").classList.remove("open");}
+document.getElementById("report-view-modal").addEventListener("click",function(e){if(e.target===this)closeReportViewer();});
+document.getElementById("rv-btn-close").addEventListener("click",closeReportViewer);
+
+document.getElementById("rv-btn-copy").addEventListener("click",function(){
+  if(!_rvRecord)return;
+  if(navigator.clipboard){navigator.clipboard.writeText(_rvRecord.reportText).then(function(){toast("Report copied!","success");});}
+  else{var ta=document.createElement("textarea");ta.value=_rvRecord.reportText;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);toast("Report copied!","success");}
+});
+
+document.getElementById("rv-btn-email").addEventListener("click",function(){
+  if(!_rvRecord)return;
+  closeReportViewer();
+  var emailVal=_rvRecord.email||"";
+  document.getElementById("email-input").value=emailVal&&emailVal!=="N/A"?emailVal:"";
+  document.getElementById("email-body").value=_rvRecord.reportText;
+  document.getElementById("email-modal-title").textContent="✉ Send Report via Email";
+  document.getElementById("critical-email-header").style.display="none";
+  document.getElementById("send-btn-normal").style.display="flex";
+  document.getElementById("send-btn-critical").style.display="none";
+  document.getElementById("email-modal").classList.add("open");
+});
+
+document.getElementById("rv-btn-pdf").addEventListener("click",function(){
+  if(!_rvRecord)return;
+  lastPatient={id:_rvRecord.id,name:_rvRecord.name,age:_rvRecord.age,gender:_rvRecord.gender,contact:_rvRecord.contact,email:_rvRecord.email||'N/A'};
+  exportPDF();
+});
+
+document.getElementById("btn-open-report").addEventListener("click",function(){
+  var rec=getSelectedRecord();
+  if(!rec){toast("Select a patient first","error");return;}
+  openReportViewer(rec);
+});
+
+document.getElementById("btn-quick-export").addEventListener("click",function(){
+  var rec=getSelectedRecord();
+  if(!rec){toast("Select a patient first","error");return;}
+  lastPatient={id:rec.id,name:rec.name,age:rec.age,gender:rec.gender,contact:rec.contact,email:rec.email||'N/A'};
+  lastResult={stage:rec.stage,confidence:rec.confidence,type:rec.stageNorm==="Normal"?"normal":"cancer"};
+  exportPDF();
+});
+
+document.getElementById("btn-report-email").addEventListener("click",function(){
+  var rec=getSelectedRecord();
+  if(!rec){toast("Select a patient first","error");return;}
+  var emailVal=rec.email||"";
+  document.getElementById("email-input").value=emailVal&&emailVal!=="N/A"?emailVal:"";
+  document.getElementById("email-body").value=rec.reportText;
+  document.getElementById("email-modal-title").textContent="✉ Send Report via Email";
+  document.getElementById("critical-email-header").style.display="none";
+  document.getElementById("send-btn-normal").style.display="flex";
+  document.getElementById("send-btn-critical").style.display="none";
+  document.getElementById("email-modal").classList.add("open");
+});
+
+document.getElementById("btn-report-copy").addEventListener("click",function(){
+  var rec=getSelectedRecord();
+  if(!rec){toast("Select a patient first","error");return;}
+  if(navigator.clipboard){navigator.clipboard.writeText(rec.reportText).then(function(){toast("Report copied!","success");});}
+  else{var ta=document.createElement("textarea");ta.value=rec.reportText;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);toast("Report copied!","success");}
+});
+
+refreshReportDropdown();
+
+var THEME_NAMES={light:'Light',dark:'Dark',teal:'Teal',rose:'Rose'};
+function applyTheme(theme,save){
+  document.body.classList.remove('theme-dark','theme-teal','theme-rose');
+  if(theme!=='light')document.body.classList.add('theme-'+theme);
+  document.querySelectorAll('.theme-swatch').forEach(function(el){el.classList.remove('active');});
+  var sw=document.getElementById('sw-'+theme);if(sw)sw.classList.add('active');
+  var lbl=document.getElementById('active-theme-label');if(lbl)lbl.textContent=THEME_NAMES[theme]||theme;
+  if(save!==false){saveLS(SK.theme,theme);toast('Theme: '+(THEME_NAMES[theme]||theme)+' — saved','success');}
+}
+document.querySelectorAll('.theme-swatch').forEach(function(sw){sw.addEventListener('click',function(){applyTheme(sw.dataset.theme,true);});});
+applyTheme(loadLS(SK.theme,'light'),false);
+
+function applyHeroBg(dataUrl){
+  var hero=document.getElementById('dash-hero');if(!hero)return;
+  hero.style.backgroundImage=dataUrl?'url("'+dataUrl+'")':'';
+  hero.style.backgroundSize=dataUrl?'cover':'';
+  hero.style.backgroundPosition=dataUrl?'center':'';
+  var prev=document.getElementById('bg-preview');
+  if(prev){if(dataUrl){prev.src=dataUrl;prev.style.display='block';}else{prev.src='';prev.style.display='none';}}
+}
+document.getElementById('bg-file-input').addEventListener('change',function(){
+  var file=this.files[0];if(!file)return;
+  if(file.size>5*1024*1024){toast('Image too large. Max 5 MB.','error');return;}
+  var reader=new FileReader();
+  reader.onload=function(e){applyHeroBg(e.target.result);saveLS(SK.heroImg,e.target.result);toast('Background image applied and saved!','success');};
+  reader.readAsDataURL(file);
+});
+document.getElementById('btn-upload-bg').addEventListener('click',function(){document.getElementById('bg-file-input').click();});
+document.getElementById('btn-remove-bg').addEventListener('click',function(){applyHeroBg(null);removeLS(SK.heroImg);document.getElementById('bg-file-input').value='';toast('Background image removed','info');});
+var savedBg=loadLS(SK.heroImg,null);if(savedBg)applyHeroBg(savedBg);
+
+function applyHeroHeight(val,save){
+  var hero=document.getElementById('dash-hero');if(hero)hero.style.height=val+'px';
+  document.getElementById('hero-height-val').textContent=val+'px';
+  document.getElementById('hero-height-slider').value=val;
+  if(save!==false)saveLS(SK.heroH,val);
+}
+document.getElementById('hero-height-slider').addEventListener('input',function(){applyHeroHeight(this.value,true);});
+var savedH=parseInt(loadLS(SK.heroH,'158'));if(isNaN(savedH))savedH=158;
+applyHeroHeight(savedH,false);
+
+document.getElementById('tog-dna').addEventListener('change',function(){var dna=document.querySelector('.dash-hero-dna');if(dna)dna.style.display=this.checked?'':'none';saveLS(SK.showDna,this.checked?'1':'0');});
+document.getElementById('tog-grid').addEventListener('change',function(){var grid=document.querySelector('.dash-hero-grid');if(grid)grid.style.display=this.checked?'':'none';saveLS(SK.showGrid,this.checked?'1':'0');});
+document.getElementById('tog-compact').addEventListener('change',function(){
+  var sidebar=document.querySelector('.sidebar');var main=document.querySelector('.main');
+  if(this.checked){sidebar.style.width='180px';main.style.marginLeft='180px';document.querySelectorAll('.nav-item span').forEach(function(s){s.style.opacity='1';});}
+  else{sidebar.style.width='';main.style.marginLeft='';document.querySelectorAll('.nav-item span').forEach(function(s){s.style.opacity='';}); }
+  saveLS(SK.compact,this.checked?'1':'0');
+});
+document.getElementById('tog-trans').addEventListener('change',function(){
+  var s=document.getElementById('no-trans-style');
+  if(!this.checked){if(!s){s=document.createElement('style');s.id='no-trans-style';s.textContent='body,body *{transition:none!important;}';document.head.appendChild(s);}}
+  else{if(s&&s.parentNode)s.parentNode.removeChild(s);}
+  saveLS(SK.transitions,this.checked?'1':'0');
+});
+
+(function loadToggles(){
+  var dna=loadLS(SK.showDna,'1')==='1';
+  var grid=loadLS(SK.showGrid,'1')==='1';
+  var comp=loadLS(SK.compact,'0')==='1';
+  var tran=loadLS(SK.transitions,'1')==='1';
+  document.getElementById('tog-dna').checked=dna;
+  document.getElementById('tog-grid').checked=grid;
+  document.getElementById('tog-compact').checked=comp;
+  document.getElementById('tog-trans').checked=tran;
+  var dnaEl=document.querySelector('.dash-hero-dna');var gridEl=document.getElementById('hero-grid');
+  if(dnaEl)dnaEl.style.display=dna?'':'none';
+  if(gridEl)gridEl.style.display=grid?'':'none';
+  if(comp){var sb=document.querySelector('.sidebar');var mn=document.querySelector('.main');if(sb)sb.style.width='180px';if(mn)mn.style.marginLeft='180px';document.querySelectorAll('.nav-item span').forEach(function(s){s.style.opacity='1';});}
+  if(!tran){var s=document.createElement('style');s.id='no-trans-style';s.textContent='body,body *{transition:none!important;}';document.head.appendChild(s);}
+})();
+
+document.getElementById('btn-clear-storage').addEventListener('click',function(){Object.values(SK).forEach(function(k){removeLS(k);});toast('All saved settings cleared. Reload to reset.','warn');});
+
+var TREATMENT_DATA={
+  testicular:{
+    'Stage 1':{title:'💊 Testicular Cancer — Stage 1 Treatment Plan',color:'green',sections:[
+      {label:'Stage 1 Overview',color:'green',body:'Stage 1 testicular cancer is confined to the testicle with no spread to lymph nodes or other organs. Prognosis is excellent with cure rates above 99%.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Radical orchiectomy</strong> — removal of the affected testicle</li><li><strong>Active surveillance</strong> — CT scans + tumour markers (AFP, HCG, LDH) every 3 months</li><li><strong>Adjuvant BEP chemotherapy</strong> — 1 cycle for high-risk Stage 1 seminoma</li><li><strong>Radiation therapy</strong> — low-dose to para-aortic lymph nodes for seminoma</li></ul>'},
+      {label:'Follow-Up Protocol',color:'green',body:'Tumour marker tests every 1–2 months. CT chest/abdomen/pelvis every 3 months for year 1, then every 6 months for year 2.'}
+    ]},
+    'Stage 2':{title:'💊 Testicular Cancer — Stage 2 Treatment Plan',color:'',sections:[
+      {label:'Stage 2 Overview',color:'green',body:'Cancer has spread to nearby abdominal lymph nodes but not to distant organs. Cure rate remains very high (90–95%).'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Radical orchiectomy</strong> followed by staging CT</li><li><strong>RPLND</strong> — retroperitoneal lymph node dissection</li><li><strong>BEP chemotherapy</strong> — 3 cycles for Stage 2B/2C non-seminoma</li><li><strong>Radiation therapy</strong> — 30 Gy for seminoma Stage 2A/2B</li></ul>'},
+      {label:'Tumour Markers',color:'green',body:'AFP, β-HCG, LDH — checked before and after every treatment cycle.'}
+    ]},
+    'Stage 3':{title:'💊 Testicular Cancer — Stage 3 Treatment Plan',color:'orange',sections:[
+      {label:'Stage 3 Overview',color:'orange',body:'Cancer has spread to distant lymph nodes or organs (lungs, liver, brain). Still highly treatable with chemotherapy.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>BEP chemotherapy</strong> — 4 cycles standard</li><li><strong>VIP regimen</strong> — for bleomycin-contraindicated patients</li><li><strong>Post-chemo RPLND</strong> — if residual mass remains</li><li><strong>High-dose chemo + stem cell rescue</strong> — for relapsed cases</li></ul>'},
+      {label:'Prognosis',color:'orange',body:'<ul><li>Good: 5-year survival ~91%</li><li>Intermediate: ~79%</li><li>Poor: ~48%</li></ul>'}
+    ]},
+    'Stage 4':{title:'💊 Testicular Cancer — Stage 4 Treatment Plan',color:'red',sections:[
+      {label:'Stage 4 Overview',color:'red',body:'Extensive metastatic disease with spread to multiple distant organs.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Intensive BEP chemotherapy</strong> — 4 cycles</li><li><strong>TIP regimen</strong> — Paclitaxel, Ifosfamide, Cisplatin for relapsed disease</li><li><strong>HDCT + autologous stem cell transplant</strong></li><li><strong>Brain mets</strong>: WBRT + stereotactic radiosurgery</li></ul>'},
+      {label:'Supportive Care',color:'red',body:'<ul><li>G-CSF — WBC support</li><li>Ondansetron + Aprepitant — anti-nausea</li><li>IV hydration — renal protection</li><li>Sperm banking before chemotherapy</li></ul>'}
+    ]}
+  },
+  gynecological:{
+    'Stage 1':{title:'💊 Gynecological Cancer — Stage 1 Treatment Plan',color:'green',sections:[
+      {label:'Stage 1 Overview',color:'green',body:'Cancer confined to the uterus/ovary/cervix. 5-year survival rate is 80–95% depending on subtype.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Total hysterectomy + BSO</strong> — standard for endometrial Stage 1</li><li><strong>Fertility-sparing surgery</strong> — for young patients with Stage 1A low-grade</li><li><strong>Cone biopsy / LEEP</strong> — for Stage 1A cervical cancer</li><li><strong>Vaginal brachytherapy</strong> — reduces vaginal recurrence</li><li><strong>Carboplatin + Paclitaxel</strong> — 3–6 cycles for high-risk Stage 1 ovarian</li></ul>'},
+      {label:'Hormone Receptor Testing',color:'green',body:'ER/PR, HER2, MSI/MMR testing recommended to guide adjuvant therapy.'}
+    ]},
+    'Stage 2':{title:'💊 Gynecological Cancer — Stage 2 Treatment Plan',color:'',sections:[
+      {label:'Stage 2 Overview',color:'',body:'Cancer spread to adjacent pelvic structures. Treatment is more aggressive than Stage 1.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Radical hysterectomy</strong> + pelvic lymph node dissection</li><li><strong>Concurrent chemoradiation</strong> — EBRT + weekly Cisplatin 40 mg/m²</li><li><strong>Brachytherapy boost</strong> — intracavitary radiation after EBRT</li><li><strong>Carboplatin AUC5 + Paclitaxel 175 mg/m²</strong> — 6 cycles for ovarian Stage 2</li></ul>'},
+      {label:'Targeted Therapy',color:'green',body:'<ul><li><strong>Pembrolizumab</strong> — for MSI-H/dMMR endometrial cancer</li><li><strong>Lenvatinib + Pembrolizumab</strong> — for recurrent endometrial cancer</li></ul>'}
+    ]},
+    'Stage 3':{title:'💊 Gynecological Cancer — Stage 3 Treatment Plan',color:'orange',sections:[
+      {label:'Stage 3 Overview',color:'orange',body:'Cancer spread to regional lymph nodes or pelvic/abdominal structures.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Cytoreductive debulking surgery</strong></li><li><strong>IP chemotherapy</strong> — Cisplatin IP + Paclitaxel IV for ovarian Stage 3</li><li><strong>EBRT + brachytherapy + Cisplatin</strong> — cervical/uterine Stage 3</li><li><strong>PARP inhibitors (Olaparib/Niraparib)</strong> — maintenance for BRCA+ patients</li></ul>'},
+      {label:'Maintenance Therapy',color:'orange',body:'Bevacizumab 15 mg/kg every 3 weeks for 12–15 months post-chemo.'}
+    ]},
+    'Stage 4':{title:'💊 Gynecological Cancer — Stage 4 Treatment Plan',color:'red',sections:[
+      {label:'Stage 4 Overview',color:'red',body:'Distant metastatic disease (liver, lungs, distant lymph nodes). Palliative-intent treatment.'},
+      {label:'Primary Treatment',color:'',body:'<ul><li><strong>Carboplatin + Paclitaxel + Bevacizumab</strong> — first-line for Stage 4 ovarian</li><li><strong>Pembrolizumab + Lenvatinib</strong> — advanced endometrial Stage 4</li><li><strong>Dostarlimab</strong> — dMMR endometrial cancer</li><li><strong>PARP inhibitors</strong> — for BRCA-mutated ovarian</li></ul>'},
+      {label:'Palliative Care',color:'red',body:'<ul><li>Palliative radiation for metastases pain</li><li>Ascites management: Paracentesis</li><li>Multidisciplinary palliative care team</li><li>Psychological support & advance care planning</li></ul>'}
+    ]}
+  }
+};
+
+var DIET_DATA={
+  testicular:{title:'🥗 Diet Plan — Testicular Cancer',sections:[
+    {label:'Recommended Foods',color:'green',body:'<ul><li><strong>Selenium-rich</strong>: Brazil nuts, tuna, eggs</li><li><strong>Zinc-rich</strong>: Pumpkin seeds, oysters, chickpeas</li><li><strong>Cruciferous vegetables</strong>: Broccoli, kale, cauliflower</li><li>Berries, tomatoes, green tea, whole grains, lean protein</li><li>2.5–3L water daily (especially during Cisplatin therapy)</li></ul>'},
+    {label:'Foods to Avoid',color:'',body:'<ul><li>Processed/red meats, alcohol</li><li>High-fat dairy, refined sugars, charred meats</li><li>Grapefruit — interacts with chemotherapy agents</li></ul>'}
+  ]},
+  gynecological:{title:'🥗 Diet Plan — Gynecological Cancer',sections:[
+    {label:'Recommended Foods',color:'green',body:'<ul><li><strong>Cruciferous vegetables</strong>: Broccoli, cauliflower, Brussels sprouts</li><li>Berries, turmeric, ginger, omega-3 fish (salmon, sardines)</li><li>Fibre-rich: lentils, oats, brown rice</li><li>Probiotic foods: yoghurt, kefir</li></ul>'},
+    {label:'Foods to Avoid',color:'',body:'<ul><li>Processed meats, high-sugar foods, alcohol, red meat</li><li>Raw/undercooked foods during immunosuppression</li><li>Excess saturated fats</li></ul>'}
+  ]}
+};
+
+var MEDICINE_DATA={
+  testicular:{title:'🧪 Medicines — Testicular Cancer',sections:[
+    {label:'BEP Chemotherapy',color:'',body:'<ul><li><strong>Bleomycin</strong> 30 IU IV — Days 1, 8, 15 per 21-day cycle</li><li><strong>Etoposide</strong> 100 mg/m² IV — Days 1–5</li><li><strong>Cisplatin</strong> 20 mg/m² IV — Days 1–5 (with IV hydration)</li></ul>'},
+    {label:'Alternative Regimens',color:'green',body:'<ul><li><strong>VIP</strong>: Vinblastine + Ifosfamide + Cisplatin</li><li><strong>TIP</strong>: Paclitaxel + Ifosfamide + Cisplatin (salvage)</li><li><strong>HDCT + ASCT</strong>: High-dose Carboplatin + Etoposide + stem cell transplant</li></ul>'},
+    {label:'Supportive Medications',color:'orange',body:'<ul><li><strong>Ondansetron</strong> 8 mg — anti-nausea</li><li><strong>Filgrastim (G-CSF)</strong> — WBC support</li><li><strong>Mesna</strong> — bladder protection</li><li><strong>Mg/K supplements</strong> — Cisplatin causes electrolyte loss</li></ul>'}
+  ]},
+  gynecological:{title:'🧪 Medicines — Gynecological Cancer',sections:[
+    {label:'First-Line Chemotherapy',color:'',body:'<ul><li><strong>Carboplatin</strong> AUC 5–6 IV, every 21 days</li><li><strong>Paclitaxel</strong> 175 mg/m² IV, every 21 days</li><li><strong>Cisplatin</strong> 40 mg/m² IV weekly — concurrent with radiation</li></ul>'},
+    {label:'Targeted & Immunotherapy',color:'green',body:'<ul><li><strong>Bevacizumab (Avastin)</strong> 15 mg/kg IV q3w</li><li><strong>Olaparib (Lynparza)</strong> 300 mg oral twice daily</li><li><strong>Pembrolizumab (Keytruda)</strong> 200 mg IV q3w</li><li><strong>Lenvatinib</strong> 20 mg oral daily + Pembrolizumab</li><li><strong>Dostarlimab (Jemperli)</strong> — dMMR endometrial</li></ul>'},
+    {label:'Supportive Medications',color:'orange',body:'<ul><li><strong>Ondansetron + Aprepitant</strong> — anti-nausea</li><li><strong>Dexamethasone</strong> 12 mg pre-chemo</li><li><strong>Filgrastim (G-CSF)</strong> — prevents febrile neutropenia</li><li><strong>Zoledronic acid</strong> — bone protection</li></ul>'}
+  ]}
+};
+
+});
+</script>
+</body>
+</html>

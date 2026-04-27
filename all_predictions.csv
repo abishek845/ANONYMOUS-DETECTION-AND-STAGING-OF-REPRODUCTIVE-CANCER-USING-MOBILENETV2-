@@ -1,0 +1,503 @@
+Dataset,Image_Path,Cancer_Type,Stage,Confidence(%)
+train,split_dataset\train\gynocological cancer\critical stage\ci (1).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (10).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (11).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (12).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (13).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (14).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (15).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (16).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (17).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (18).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (19).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (2).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (20).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (21).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (22).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (23).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (24).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (25).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (26).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (27).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (28).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (29).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (3).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (30).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (31).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (32).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (33).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (34).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (35).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (36).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (37).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (38).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (39).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (4).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (40).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (5).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (6).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (7).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (8).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\ci (9).png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\critical stage\.ipynb_checkpoints\ci (1)-checkpoint.png,Gynocological Cancer,Critical Stage,100.0
+train,split_dataset\train\gynocological cancer\normal\1.jpg,Gynocological Cancer,Normal,99.89
+train,split_dataset\train\gynocological cancer\normal\2.jpg,Gynocological Cancer,Normal,100.0
+train,split_dataset\train\gynocological cancer\stage-1\s1 (1).png,Gynocological Cancer,Stage-1,98.74
+train,split_dataset\train\gynocological cancer\stage-1\s1 (10).jpg,Gynocological Cancer,Stage-3,61.8
+train,split_dataset\train\gynocological cancer\stage-1\s1 (11).jpg,Gynocological Cancer,Stage-1,85.1
+train,split_dataset\train\gynocological cancer\stage-1\s1 (12).jpg,Gynocological Cancer,Stage-1,56.81
+train,split_dataset\train\gynocological cancer\stage-1\s1 (13).jpg,Gynocological Cancer,Stage-3,56.81
+train,split_dataset\train\gynocological cancer\stage-1\s1 (14).jpg,Gynocological Cancer,Stage-1,66.15
+train,split_dataset\train\gynocological cancer\stage-1\s1 (15).jpg,Gynocological Cancer,Stage-3,58.49
+train,split_dataset\train\gynocological cancer\stage-1\s1 (17).jpg,Gynocological Cancer,Stage-1,50.03
+train,split_dataset\train\gynocological cancer\stage-1\s1 (19).jpg,Gynocological Cancer,Stage-1,55.71
+train,split_dataset\train\gynocological cancer\stage-1\s1 (20).jpg,Gynocological Cancer,Stage-1,88.79
+train,split_dataset\train\gynocological cancer\stage-1\s1 (21).jpg,Gynocological Cancer,Stage-1,77.07
+train,split_dataset\train\gynocological cancer\stage-1\s1 (22).jpg,Gynocological Cancer,Stage-1,67.73
+train,split_dataset\train\gynocological cancer\stage-1\s1 (23).jpg,Gynocological Cancer,Stage-1,67.91
+train,split_dataset\train\gynocological cancer\stage-1\s1 (24).jpg,Gynocological Cancer,Stage-1,59.38
+train,split_dataset\train\gynocological cancer\stage-1\s1 (25).jpg,Gynocological Cancer,Stage-1,90.08
+train,split_dataset\train\gynocological cancer\stage-1\s1 (26).jpg,Gynocological Cancer,Stage-1,52.65
+train,split_dataset\train\gynocological cancer\stage-1\s1 (27).jpg,Gynocological Cancer,Stage-1,78.48
+train,split_dataset\train\gynocological cancer\stage-1\s1 (28).jpg,Gynocological Cancer,Stage-1,61.3
+train,split_dataset\train\gynocological cancer\stage-1\s1 (29).jpg,Gynocological Cancer,Stage-3,61.86
+train,split_dataset\train\gynocological cancer\stage-1\s1 (30).jpg,Gynocological Cancer,Stage-3,65.28
+train,split_dataset\train\gynocological cancer\stage-1\s1 (31).jpg,Gynocological Cancer,Stage-1,78.42
+train,split_dataset\train\gynocological cancer\stage-1\s1 (32).jpg,Gynocological Cancer,Stage-3,55.56
+train,split_dataset\train\gynocological cancer\stage-1\s1 (33).jpg,Gynocological Cancer,Stage-1,80.91
+train,split_dataset\train\gynocological cancer\stage-1\s1 (34).jpg,Gynocological Cancer,Stage-1,63.77
+train,split_dataset\train\gynocological cancer\stage-1\s1 (35).jpg,Gynocological Cancer,Stage-1,53.8
+train,split_dataset\train\gynocological cancer\stage-1\s1 (36).jpg,Gynocological Cancer,Stage-1,50.82
+train,split_dataset\train\gynocological cancer\stage-1\s1 (37).jpg,Gynocological Cancer,Stage-1,50.61
+train,split_dataset\train\gynocological cancer\stage-1\s1 (38).jpg,Gynocological Cancer,Stage-3,68.72
+train,split_dataset\train\gynocological cancer\stage-1\s1 (39).jpg,Gynocological Cancer,Stage-1,64.4
+train,split_dataset\train\gynocological cancer\stage-1\s1 (4).jpg,Gynocological Cancer,Stage-3,74.59
+train,split_dataset\train\gynocological cancer\stage-1\s1 (40).jpg,Gynocological Cancer,Stage-3,58.48
+train,split_dataset\train\gynocological cancer\stage-1\s1 (5).jpg,Gynocological Cancer,Stage-1,74.59
+train,split_dataset\train\gynocological cancer\stage-1\s1 (6).jpg,Gynocological Cancer,Stage-1,79.12
+train,split_dataset\train\gynocological cancer\stage-1\s1 (7).jpg,Gynocological Cancer,Stage-1,62.7
+train,split_dataset\train\gynocological cancer\stage-1\s1 (8).jpg,Gynocological Cancer,Stage-1,62.44
+train,split_dataset\train\gynocological cancer\stage-1\s1 (9).jpg,Gynocological Cancer,Stage-3,59.84
+train,split_dataset\train\gynocological cancer\stage-1\s1(41).jpg,Gynocological Cancer,Stage-1,75.46
+train,split_dataset\train\gynocological cancer\stage-1\s1(42).jpg,Gynocological Cancer,Stage-1,67.63
+train,split_dataset\train\gynocological cancer\stage-1\s1(43).jpg,Gynocological Cancer,Stage-1,63.61
+train,split_dataset\train\gynocological cancer\stage-2\s2 (1).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (10).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (11).png,Gynocological Cancer,Stage-2,99.99
+train,split_dataset\train\gynocological cancer\stage-2\s2 (12).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (13).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (14).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (15).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (16).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (17).png,Gynocological Cancer,Stage-2,99.98
+train,split_dataset\train\gynocological cancer\stage-2\s2 (18).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (19).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (2).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (20).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (21).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (22).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (23).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (24).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (25).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (26).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (27).png,Gynocological Cancer,Stage-2,99.99
+train,split_dataset\train\gynocological cancer\stage-2\s2 (28).png,Gynocological Cancer,Stage-2,99.98
+train,split_dataset\train\gynocological cancer\stage-2\s2 (29).png,Gynocological Cancer,Stage-2,99.99
+train,split_dataset\train\gynocological cancer\stage-2\s2 (3).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (30).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (31).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (32).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (33).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (34).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (35).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (36).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (37).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (38).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (39).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (4).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (5).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (6).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (7).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-2\s2 (8).png,Gynocological Cancer,Stage-2,99.99
+train,split_dataset\train\gynocological cancer\stage-2\s2 (9).png,Gynocological Cancer,Stage-2,100.0
+train,split_dataset\train\gynocological cancer\stage-3\s3 (1).jpg,Gynocological Cancer,Stage-3,52.75
+train,split_dataset\train\gynocological cancer\stage-3\s3 (10).jpg,Gynocological Cancer,Stage-3,82.22
+train,split_dataset\train\gynocological cancer\stage-3\s3 (11).jpg,Gynocological Cancer,Stage-3,60.85
+train,split_dataset\train\gynocological cancer\stage-3\s3 (12).jpg,Gynocological Cancer,Stage-3,87.91
+train,split_dataset\train\gynocological cancer\stage-3\s3 (13).jpg,Gynocological Cancer,Stage-3,80.51
+train,split_dataset\train\gynocological cancer\stage-3\s3 (14).jpg,Gynocological Cancer,Stage-3,87.89
+train,split_dataset\train\gynocological cancer\stage-3\s3 (15).jpg,Gynocological Cancer,Stage-3,71.84
+train,split_dataset\train\gynocological cancer\stage-3\s3 (16).jpg,Gynocological Cancer,Stage-3,89.37
+train,split_dataset\train\gynocological cancer\stage-3\s3 (17).jpg,Gynocological Cancer,Stage-3,68.74
+train,split_dataset\train\gynocological cancer\stage-3\s3 (18).jpg,Gynocological Cancer,Stage-3,80.29
+train,split_dataset\train\gynocological cancer\stage-3\s3 (19).jpg,Gynocological Cancer,Stage-3,62.95
+train,split_dataset\train\gynocological cancer\stage-3\s3 (2).jpg,Gynocological Cancer,Stage-3,60.9
+train,split_dataset\train\gynocological cancer\stage-3\s3 (21).jpg,Gynocological Cancer,Stage-3,56.02
+train,split_dataset\train\gynocological cancer\stage-3\s3 (22).jpg,Gynocological Cancer,Stage-3,54.72
+train,split_dataset\train\gynocological cancer\stage-3\s3 (23).jpg,Gynocological Cancer,Stage-3,57.3
+train,split_dataset\train\gynocological cancer\stage-3\s3 (24).jpg,Gynocological Cancer,Stage-3,52.85
+train,split_dataset\train\gynocological cancer\stage-3\s3 (26).jpg,Gynocological Cancer,Stage-3,67.04
+train,split_dataset\train\gynocological cancer\stage-3\s3 (27).jpg,Gynocological Cancer,Stage-3,64.43
+train,split_dataset\train\gynocological cancer\stage-3\s3 (28).jpg,Gynocological Cancer,Stage-3,56.8
+train,split_dataset\train\gynocological cancer\stage-3\s3 (29).jpg,Gynocological Cancer,Stage-3,87.38
+train,split_dataset\train\gynocological cancer\stage-3\s3 (3).jpg,Gynocological Cancer,Stage-3,86.3
+train,split_dataset\train\gynocological cancer\stage-3\s3 (30).jpg,Gynocological Cancer,Stage-3,83.89
+train,split_dataset\train\gynocological cancer\stage-3\s3 (31).jpg,Gynocological Cancer,Stage-3,78.54
+train,split_dataset\train\gynocological cancer\stage-3\s3 (32).jpg,Gynocological Cancer,Stage-3,77.28
+train,split_dataset\train\gynocological cancer\stage-3\s3 (33).jpg,Gynocological Cancer,Stage-3,51.8
+train,split_dataset\train\gynocological cancer\stage-3\s3 (34).jpg,Gynocological Cancer,Stage-1,53.74
+train,split_dataset\train\gynocological cancer\stage-3\s3 (35).jpg,Gynocological Cancer,Stage-3,65.03
+train,split_dataset\train\gynocological cancer\stage-3\s3 (36).jpg,Gynocological Cancer,Stage-3,67.21
+train,split_dataset\train\gynocological cancer\stage-3\s3 (37).jpg,Gynocological Cancer,Stage-3,71.2
+train,split_dataset\train\gynocological cancer\stage-3\s3 (38).jpg,Gynocological Cancer,Stage-3,71.7
+train,split_dataset\train\gynocological cancer\stage-3\s3 (39).jpg,Gynocological Cancer,Stage-3,79.64
+train,split_dataset\train\gynocological cancer\stage-3\s3 (4).jpg,Gynocological Cancer,Stage-3,81.64
+train,split_dataset\train\gynocological cancer\stage-3\s3 (40).jpg,Gynocological Cancer,Stage-3,70.26
+train,split_dataset\train\gynocological cancer\stage-3\s3 (41).jpg,Gynocological Cancer,Stage-3,58.8
+train,split_dataset\train\gynocological cancer\stage-3\s3 (42).jpg,Gynocological Cancer,Stage-3,64.16
+train,split_dataset\train\gynocological cancer\stage-3\s3 (5).jpg,Gynocological Cancer,Stage-3,74.09
+train,split_dataset\train\gynocological cancer\stage-3\s3 (7).jpg,Gynocological Cancer,Stage-3,64.41
+train,split_dataset\train\gynocological cancer\stage-3\s3 (8).jpg,Gynocological Cancer,Stage-3,80.47
+train,split_dataset\train\gynocological cancer\stage-3\s3 (9).jpg,Gynocological Cancer,Stage-3,63.31
+train,split_dataset\train\gynocological cancer\stage-3\s3(43).jpg,Gynocological Cancer,Stage-3,89.17
+train,split_dataset\train\gynocological cancer\stage-3\s3(44).jpg,Gynocological Cancer,Stage-3,74.89
+train,split_dataset\train\gynocological cancer\stage-3\s3(45).jpg,Gynocological Cancer,Stage-3,79.47
+train,split_dataset\train\gynocological cancer\stage-3\s3(46).jpg,Gynocological Cancer,Stage-3,85.58
+train,split_dataset\train\gynocological cancer\stage-3\s3(47).jpg,Gynocological Cancer,Stage-3,86.92
+train,split_dataset\train\gynocological cancer\stage-3\s3(48).jpg,Gynocological Cancer,Stage-3,81.95
+train,split_dataset\train\gynocological cancer\stage-3\s3(49).jpg,Gynocological Cancer,Stage-3,74.95
+train,split_dataset\train\gynocological cancer\stage-4\s4 (1).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (10).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (11).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (12).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (13).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (14).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (15).jpg,Gynocological Cancer,Stage-4,99.85
+train,split_dataset\train\gynocological cancer\stage-4\s4 (16).jpg,Gynocological Cancer,Stage-4,99.97
+train,split_dataset\train\gynocological cancer\stage-4\s4 (17).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (18).jpg,Gynocological Cancer,Stage-4,99.92
+train,split_dataset\train\gynocological cancer\stage-4\s4 (19).jpg,Gynocological Cancer,Stage-4,99.98
+train,split_dataset\train\gynocological cancer\stage-4\s4 (2).jpg,Gynocological Cancer,Stage-4,99.99
+train,split_dataset\train\gynocological cancer\stage-4\s4 (20).jpg,Gynocological Cancer,Stage-4,99.78
+train,split_dataset\train\gynocological cancer\stage-4\s4 (21).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (22).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (23).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (24).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (25).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (26).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (27).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (28).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (29).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (3).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (30).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (31).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (32).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (33).jpg,Gynocological Cancer,Stage-4,99.66
+train,split_dataset\train\gynocological cancer\stage-4\s4 (34).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (35).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (36).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (37).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (38).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (39).jpg,Gynocological Cancer,Stage-4,99.96
+train,split_dataset\train\gynocological cancer\stage-4\s4 (4).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (40).jpg,Gynocological Cancer,Stage-4,99.99
+train,split_dataset\train\gynocological cancer\stage-4\s4 (41).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (42).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (43).jpg,Gynocological Cancer,Stage-4,99.97
+train,split_dataset\train\gynocological cancer\stage-4\s4 (44).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (45).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (46).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (47).jpg,Gynocological Cancer,Stage-4,99.99
+train,split_dataset\train\gynocological cancer\stage-4\s4 (48).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (5).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (6).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (7).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (8).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\gynocological cancer\stage-4\s4 (9).jpg,Gynocological Cancer,Stage-4,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (1).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (1).jpg,Testicular Cancer,Critical Stage,99.89
+train,split_dataset\train\testicular cancer\critical stage\ci (1).png,Testicular Cancer,Critical Stage,99.88
+train,split_dataset\train\testicular cancer\critical stage\ci (10).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (2).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (3).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (4).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (5).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (6).jpeg,Testicular Cancer,Critical Stage,99.86
+train,split_dataset\train\testicular cancer\critical stage\ci (7).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\critical stage\ci (8).jpeg,Testicular Cancer,Critical Stage,99.99
+train,split_dataset\train\testicular cancer\critical stage\ci (9).jpeg,Testicular Cancer,Critical Stage,100.0
+train,split_dataset\train\testicular cancer\normal\4.jpg,Testicular Cancer,Normal,100.0
+train,split_dataset\train\testicular cancer\normal\.ipynb_checkpoints\4-checkpoint.jpg,Testicular Cancer,Normal,100.0
+train,split_dataset\train\testicular cancer\stage-1\s1 (1).png,Testicular Cancer,Stage-1,99.28
+train,split_dataset\train\testicular cancer\stage-1\s1 (2).png,Testicular Cancer,Stage-1,99.94
+train,split_dataset\train\testicular cancer\stage-1\s1 (3).png,Testicular Cancer,Stage-1,99.97
+train,split_dataset\train\testicular cancer\stage-1\s1 (4).png,Testicular Cancer,Stage-1,99.78
+train,split_dataset\train\testicular cancer\stage-1\s1 (5).png,Testicular Cancer,Stage-1,99.86
+train,split_dataset\train\testicular cancer\stage-1\s1 (6).png,Testicular Cancer,Stage-1,99.99
+train,split_dataset\train\testicular cancer\stage-1\s1 (7).png,Testicular Cancer,Stage-1,99.78
+train,split_dataset\train\testicular cancer\stage-2\s2 (1).png,Testicular Cancer,Stage-2,54.59
+train,split_dataset\train\testicular cancer\stage-2\s2 (2).png,Testicular Cancer,Stage-2,98.18
+train,split_dataset\train\testicular cancer\stage-2\s2 (3).png,Testicular Cancer,Stage-2,98.91
+train,split_dataset\train\testicular cancer\stage-2\s2 (4).png,Testicular Cancer,Stage-2,96.18
+train,split_dataset\train\testicular cancer\stage-3\s3 (1).jpg,Testicular Cancer,Stage-3,100.0
+train,split_dataset\train\testicular cancer\stage-3\s3 (1).png,Testicular Cancer,Stage-3,99.75
+train,split_dataset\train\testicular cancer\stage-3\s3 (2).jpg,Testicular Cancer,Stage-3,99.7
+train,split_dataset\train\testicular cancer\stage-3\s3 (2).png,Testicular Cancer,Stage-3,99.99
+train,split_dataset\train\testicular cancer\stage-3\s3 (3).jpg,Testicular Cancer,Stage-3,99.99
+train,split_dataset\train\testicular cancer\stage-3\s3 (3).png,Testicular Cancer,Stage-3,99.19
+train,split_dataset\train\testicular cancer\stage-3\s3 (4).png,Testicular Cancer,Stage-3,81.94
+train,split_dataset\train\testicular cancer\stage-4\s4 (1).png,Testicular Cancer,Stage-4,96.47
+train,split_dataset\train\testicular cancer\stage-4\s4 (2).png,Testicular Cancer,Stage-4,92.62
+train,split_dataset\train\testicular cancer\stage-4\s4 (3).png,Testicular Cancer,Stage-4,97.57
+train,split_dataset\train\testicular cancer\stage-4\s4 (4).png,Testicular Cancer,Stage-4,85.32
+train,split_dataset\train\testicular cancer\stage-4\s4 (5).png,Testicular Cancer,Stage-4,98.13
+val,split_dataset\val\gynocological cancer\critical stage\ci (1).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (10).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (11).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (12).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (13).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (14).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (15).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (16).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (17).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (18).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (19).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (2).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (20).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (21).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (22).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (23).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (24).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (25).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (26).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (27).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (28).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (29).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (3).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (30).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (31).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (32).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (33).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (34).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (35).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (36).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (37).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (38).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (39).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (4).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (40).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (5).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (6).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (7).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (8).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\critical stage\ci (9).png,Gynocological Cancer,Critical Stage,100.0
+val,split_dataset\val\gynocological cancer\nomal\1.jpg,Gynocological Cancer,Normal,99.89
+val,split_dataset\val\gynocological cancer\nomal\2.jpg,Gynocological Cancer,Normal,100.0
+val,split_dataset\val\gynocological cancer\stage-1\s1 (1).png,Gynocological Cancer,Stage-1,98.74
+val,split_dataset\val\gynocological cancer\stage-1\s1 (10).jpg,Gynocological Cancer,Stage-3,61.8
+val,split_dataset\val\gynocological cancer\stage-1\s1 (11).jpg,Gynocological Cancer,Stage-1,85.1
+val,split_dataset\val\gynocological cancer\stage-1\s1 (12).jpg,Gynocological Cancer,Stage-1,56.81
+val,split_dataset\val\gynocological cancer\stage-1\s1 (13).jpg,Gynocological Cancer,Stage-3,56.81
+val,split_dataset\val\gynocological cancer\stage-1\s1 (14).jpg,Gynocological Cancer,Stage-1,66.15
+val,split_dataset\val\gynocological cancer\stage-1\s1 (15).jpg,Gynocological Cancer,Stage-3,58.49
+val,split_dataset\val\gynocological cancer\stage-1\s1 (17).jpg,Gynocological Cancer,Stage-1,50.03
+val,split_dataset\val\gynocological cancer\stage-1\s1 (19).jpg,Gynocological Cancer,Stage-1,55.71
+val,split_dataset\val\gynocological cancer\stage-1\s1 (20).jpg,Gynocological Cancer,Stage-1,88.79
+val,split_dataset\val\gynocological cancer\stage-1\s1 (21).jpg,Gynocological Cancer,Stage-1,77.07
+val,split_dataset\val\gynocological cancer\stage-1\s1 (22).jpg,Gynocological Cancer,Stage-1,67.73
+val,split_dataset\val\gynocological cancer\stage-1\s1 (23).jpg,Gynocological Cancer,Stage-1,67.91
+val,split_dataset\val\gynocological cancer\stage-1\s1 (24).jpg,Gynocological Cancer,Stage-1,59.38
+val,split_dataset\val\gynocological cancer\stage-1\s1 (25).jpg,Gynocological Cancer,Stage-1,90.08
+val,split_dataset\val\gynocological cancer\stage-1\s1 (26).jpg,Gynocological Cancer,Stage-1,52.65
+val,split_dataset\val\gynocological cancer\stage-1\s1 (27).jpg,Gynocological Cancer,Stage-1,78.48
+val,split_dataset\val\gynocological cancer\stage-1\s1 (28).jpg,Gynocological Cancer,Stage-1,61.3
+val,split_dataset\val\gynocological cancer\stage-1\s1 (29).jpg,Gynocological Cancer,Stage-3,61.86
+val,split_dataset\val\gynocological cancer\stage-1\s1 (30).jpg,Gynocological Cancer,Stage-3,65.28
+val,split_dataset\val\gynocological cancer\stage-1\s1 (31).jpg,Gynocological Cancer,Stage-1,78.42
+val,split_dataset\val\gynocological cancer\stage-1\s1 (32).jpg,Gynocological Cancer,Stage-3,55.56
+val,split_dataset\val\gynocological cancer\stage-1\s1 (33).jpg,Gynocological Cancer,Stage-1,80.91
+val,split_dataset\val\gynocological cancer\stage-1\s1 (34).jpg,Gynocological Cancer,Stage-1,63.77
+val,split_dataset\val\gynocological cancer\stage-1\s1 (35).jpg,Gynocological Cancer,Stage-1,53.8
+val,split_dataset\val\gynocological cancer\stage-1\s1 (36).jpg,Gynocological Cancer,Stage-1,50.82
+val,split_dataset\val\gynocological cancer\stage-1\s1 (37).jpg,Gynocological Cancer,Stage-1,50.61
+val,split_dataset\val\gynocological cancer\stage-1\s1 (38).jpg,Gynocological Cancer,Stage-3,68.72
+val,split_dataset\val\gynocological cancer\stage-1\s1 (39).jpg,Gynocological Cancer,Stage-1,64.4
+val,split_dataset\val\gynocological cancer\stage-1\s1 (4).jpg,Gynocological Cancer,Stage-3,74.59
+val,split_dataset\val\gynocological cancer\stage-1\s1 (40).jpg,Gynocological Cancer,Stage-3,58.48
+val,split_dataset\val\gynocological cancer\stage-1\s1 (5).jpg,Gynocological Cancer,Stage-1,74.59
+val,split_dataset\val\gynocological cancer\stage-1\s1 (6).jpg,Gynocological Cancer,Stage-1,79.12
+val,split_dataset\val\gynocological cancer\stage-1\s1 (7).jpg,Gynocological Cancer,Stage-1,62.7
+val,split_dataset\val\gynocological cancer\stage-1\s1 (8).jpg,Gynocological Cancer,Stage-1,62.44
+val,split_dataset\val\gynocological cancer\stage-1\s1 (9).jpg,Gynocological Cancer,Stage-3,59.84
+val,split_dataset\val\gynocological cancer\stage-1\s1(41).jpg,Gynocological Cancer,Stage-1,75.46
+val,split_dataset\val\gynocological cancer\stage-1\s1(42).jpg,Gynocological Cancer,Stage-1,63.61
+val,split_dataset\val\gynocological cancer\stage-1\s1(43).jpg,Gynocological Cancer,Stage-1,67.63
+val,split_dataset\val\gynocological cancer\stage-2\s2 (1).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (10).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (11).png,Gynocological Cancer,Stage-2,99.99
+val,split_dataset\val\gynocological cancer\stage-2\s2 (12).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (13).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (14).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (15).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (16).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (17).png,Gynocological Cancer,Stage-2,99.98
+val,split_dataset\val\gynocological cancer\stage-2\s2 (18).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (19).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (2).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (20).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (21).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (22).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (23).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (24).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (25).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (26).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (27).png,Gynocological Cancer,Stage-2,99.99
+val,split_dataset\val\gynocological cancer\stage-2\s2 (28).png,Gynocological Cancer,Stage-2,99.98
+val,split_dataset\val\gynocological cancer\stage-2\s2 (29).png,Gynocological Cancer,Stage-2,99.99
+val,split_dataset\val\gynocological cancer\stage-2\s2 (3).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (30).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (31).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (32).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (33).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (34).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (35).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (36).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (37).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (38).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (39).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (4).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (5).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (6).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (7).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-2\s2 (8).png,Gynocological Cancer,Stage-2,99.99
+val,split_dataset\val\gynocological cancer\stage-2\s2 (9).png,Gynocological Cancer,Stage-2,100.0
+val,split_dataset\val\gynocological cancer\stage-3\s3 (1).jpg,Gynocological Cancer,Stage-3,52.75
+val,split_dataset\val\gynocological cancer\stage-3\s3 (10).jpg,Gynocological Cancer,Stage-3,82.22
+val,split_dataset\val\gynocological cancer\stage-3\s3 (11).jpg,Gynocological Cancer,Stage-3,60.85
+val,split_dataset\val\gynocological cancer\stage-3\s3 (12).jpg,Gynocological Cancer,Stage-3,87.91
+val,split_dataset\val\gynocological cancer\stage-3\s3 (13).jpg,Gynocological Cancer,Stage-3,80.51
+val,split_dataset\val\gynocological cancer\stage-3\s3 (14).jpg,Gynocological Cancer,Stage-3,87.89
+val,split_dataset\val\gynocological cancer\stage-3\s3 (15).jpg,Gynocological Cancer,Stage-3,71.84
+val,split_dataset\val\gynocological cancer\stage-3\s3 (16).jpg,Gynocological Cancer,Stage-3,89.37
+val,split_dataset\val\gynocological cancer\stage-3\s3 (17).jpg,Gynocological Cancer,Stage-3,68.74
+val,split_dataset\val\gynocological cancer\stage-3\s3 (18).jpg,Gynocological Cancer,Stage-3,80.29
+val,split_dataset\val\gynocological cancer\stage-3\s3 (19).jpg,Gynocological Cancer,Stage-3,62.95
+val,split_dataset\val\gynocological cancer\stage-3\s3 (2).jpg,Gynocological Cancer,Stage-3,60.9
+val,split_dataset\val\gynocological cancer\stage-3\s3 (21).jpg,Gynocological Cancer,Stage-3,56.02
+val,split_dataset\val\gynocological cancer\stage-3\s3 (22).jpg,Gynocological Cancer,Stage-3,54.72
+val,split_dataset\val\gynocological cancer\stage-3\s3 (23).jpg,Gynocological Cancer,Stage-3,57.3
+val,split_dataset\val\gynocological cancer\stage-3\s3 (24).jpg,Gynocological Cancer,Stage-3,52.85
+val,split_dataset\val\gynocological cancer\stage-3\s3 (26).jpg,Gynocological Cancer,Stage-3,67.04
+val,split_dataset\val\gynocological cancer\stage-3\s3 (27).jpg,Gynocological Cancer,Stage-3,64.43
+val,split_dataset\val\gynocological cancer\stage-3\s3 (28).jpg,Gynocological Cancer,Stage-3,56.8
+val,split_dataset\val\gynocological cancer\stage-3\s3 (29).jpg,Gynocological Cancer,Stage-3,87.38
+val,split_dataset\val\gynocological cancer\stage-3\s3 (3).jpg,Gynocological Cancer,Stage-3,86.3
+val,split_dataset\val\gynocological cancer\stage-3\s3 (30).jpg,Gynocological Cancer,Stage-3,83.89
+val,split_dataset\val\gynocological cancer\stage-3\s3 (31).jpg,Gynocological Cancer,Stage-3,78.54
+val,split_dataset\val\gynocological cancer\stage-3\s3 (32).jpg,Gynocological Cancer,Stage-3,77.28
+val,split_dataset\val\gynocological cancer\stage-3\s3 (33).jpg,Gynocological Cancer,Stage-3,51.8
+val,split_dataset\val\gynocological cancer\stage-3\s3 (34).jpg,Gynocological Cancer,Stage-1,53.74
+val,split_dataset\val\gynocological cancer\stage-3\s3 (35).jpg,Gynocological Cancer,Stage-3,65.03
+val,split_dataset\val\gynocological cancer\stage-3\s3 (36).jpg,Gynocological Cancer,Stage-3,67.21
+val,split_dataset\val\gynocological cancer\stage-3\s3 (37).jpg,Gynocological Cancer,Stage-3,71.2
+val,split_dataset\val\gynocological cancer\stage-3\s3 (38).jpg,Gynocological Cancer,Stage-3,71.7
+val,split_dataset\val\gynocological cancer\stage-3\s3 (39).jpg,Gynocological Cancer,Stage-3,79.64
+val,split_dataset\val\gynocological cancer\stage-3\s3 (4).jpg,Gynocological Cancer,Stage-3,81.64
+val,split_dataset\val\gynocological cancer\stage-3\s3 (40).jpg,Gynocological Cancer,Stage-3,70.26
+val,split_dataset\val\gynocological cancer\stage-3\s3 (41).jpg,Gynocological Cancer,Stage-3,58.8
+val,split_dataset\val\gynocological cancer\stage-3\s3 (42).jpg,Gynocological Cancer,Stage-3,64.16
+val,split_dataset\val\gynocological cancer\stage-3\s3 (5).jpg,Gynocological Cancer,Stage-3,74.09
+val,split_dataset\val\gynocological cancer\stage-3\s3 (7).jpg,Gynocological Cancer,Stage-3,64.41
+val,split_dataset\val\gynocological cancer\stage-3\s3 (8).jpg,Gynocological Cancer,Stage-3,80.47
+val,split_dataset\val\gynocological cancer\stage-3\s3 (9).jpg,Gynocological Cancer,Stage-3,63.31
+val,split_dataset\val\gynocological cancer\stage-3\s3(43).jpg,Gynocological Cancer,Stage-3,89.17
+val,split_dataset\val\gynocological cancer\stage-3\s3(44).jpg,Gynocological Cancer,Stage-3,74.89
+val,split_dataset\val\gynocological cancer\stage-3\s3(45).jpg,Gynocological Cancer,Stage-3,79.47
+val,split_dataset\val\gynocological cancer\stage-3\s3(46).jpg,Gynocological Cancer,Stage-3,85.58
+val,split_dataset\val\gynocological cancer\stage-3\s3(47).jpg,Gynocological Cancer,Stage-3,74.95
+val,split_dataset\val\gynocological cancer\stage-3\s3(49).jpg,Gynocological Cancer,Stage-3,86.92
+val,split_dataset\val\gynocological cancer\stage-3\s3(50).jpg,Gynocological Cancer,Stage-3,81.95
+val,split_dataset\val\gynocological cancer\stage-4\s4 (1).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (10).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (11).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (12).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (13).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (14).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (15).jpg,Gynocological Cancer,Stage-4,99.85
+val,split_dataset\val\gynocological cancer\stage-4\s4 (16).jpg,Gynocological Cancer,Stage-4,99.97
+val,split_dataset\val\gynocological cancer\stage-4\s4 (17).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (18).jpg,Gynocological Cancer,Stage-4,99.92
+val,split_dataset\val\gynocological cancer\stage-4\s4 (19).jpg,Gynocological Cancer,Stage-4,99.98
+val,split_dataset\val\gynocological cancer\stage-4\s4 (2).jpg,Gynocological Cancer,Stage-4,99.99
+val,split_dataset\val\gynocological cancer\stage-4\s4 (20).jpg,Gynocological Cancer,Stage-4,99.78
+val,split_dataset\val\gynocological cancer\stage-4\s4 (21).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (22).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (23).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (24).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (25).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (26).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (27).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (28).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (29).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (3).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (30).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (31).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (32).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (33).jpg,Gynocological Cancer,Stage-4,99.66
+val,split_dataset\val\gynocological cancer\stage-4\s4 (34).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (35).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (36).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (37).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (38).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (39).jpg,Gynocological Cancer,Stage-4,99.96
+val,split_dataset\val\gynocological cancer\stage-4\s4 (4).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (40).jpg,Gynocological Cancer,Stage-4,99.99
+val,split_dataset\val\gynocological cancer\stage-4\s4 (41).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (42).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (43).jpg,Gynocological Cancer,Stage-4,99.97
+val,split_dataset\val\gynocological cancer\stage-4\s4 (44).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (45).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (46).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (47).jpg,Gynocological Cancer,Stage-4,99.99
+val,split_dataset\val\gynocological cancer\stage-4\s4 (48).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (5).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (6).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (7).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (8).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\gynocological cancer\stage-4\s4 (9).jpg,Gynocological Cancer,Stage-4,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (1).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (1).jpg,Testicular Cancer,Critical Stage,99.89
+val,split_dataset\val\testicular cancer\critical stage\ci (1).png,Testicular Cancer,Critical Stage,99.88
+val,split_dataset\val\testicular cancer\critical stage\ci (10).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (2).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (3).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (4).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (5).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (6).jpeg,Testicular Cancer,Critical Stage,99.86
+val,split_dataset\val\testicular cancer\critical stage\ci (7).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\critical stage\ci (8).jpeg,Testicular Cancer,Critical Stage,99.99
+val,split_dataset\val\testicular cancer\critical stage\ci (9).jpeg,Testicular Cancer,Critical Stage,100.0
+val,split_dataset\val\testicular cancer\normal\4.jpg,Testicular Cancer,Normal,100.0
+val,split_dataset\val\testicular cancer\stage-1\s1 (1).png,Testicular Cancer,Stage-1,99.28
+val,split_dataset\val\testicular cancer\stage-1\s1 (2).png,Testicular Cancer,Stage-1,99.94
+val,split_dataset\val\testicular cancer\stage-1\s1 (3).png,Testicular Cancer,Stage-1,99.97
+val,split_dataset\val\testicular cancer\stage-1\s1 (4).png,Testicular Cancer,Stage-1,99.78
+val,split_dataset\val\testicular cancer\stage-1\s1 (5).png,Testicular Cancer,Stage-1,99.86
+val,split_dataset\val\testicular cancer\stage-1\s1 (6).png,Testicular Cancer,Stage-1,99.99
+val,split_dataset\val\testicular cancer\stage-1\s1 (7).png,Testicular Cancer,Stage-1,99.78
+val,split_dataset\val\testicular cancer\stage-2\s2 (1).png,Testicular Cancer,Stage-2,54.59
+val,split_dataset\val\testicular cancer\stage-2\s2 (2).png,Testicular Cancer,Stage-2,98.18
+val,split_dataset\val\testicular cancer\stage-2\s2 (3).png,Testicular Cancer,Stage-2,98.91
+val,split_dataset\val\testicular cancer\stage-2\s2 (4).png,Testicular Cancer,Stage-2,96.18
+val,split_dataset\val\testicular cancer\stage-3\s3 (1).jpg,Testicular Cancer,Stage-3,100.0
+val,split_dataset\val\testicular cancer\stage-3\s3 (1).png,Testicular Cancer,Stage-3,99.75
+val,split_dataset\val\testicular cancer\stage-3\s3 (2).jpg,Testicular Cancer,Stage-3,99.7
+val,split_dataset\val\testicular cancer\stage-3\s3 (2).png,Testicular Cancer,Stage-3,99.99
+val,split_dataset\val\testicular cancer\stage-3\s3 (3).jpg,Testicular Cancer,Stage-3,99.99
+val,split_dataset\val\testicular cancer\stage-3\s3 (3).png,Testicular Cancer,Stage-3,99.19
+val,split_dataset\val\testicular cancer\stage-3\s3 (4).png,Testicular Cancer,Stage-3,81.94
+val,split_dataset\val\testicular cancer\stage-4\s4 (1).png,Testicular Cancer,Stage-4,96.47
+val,split_dataset\val\testicular cancer\stage-4\s4 (2).png,Testicular Cancer,Stage-4,92.62
+val,split_dataset\val\testicular cancer\stage-4\s4 (3).png,Testicular Cancer,Stage-4,97.57
+val,split_dataset\val\testicular cancer\stage-4\s4 (4).png,Testicular Cancer,Stage-4,85.32
+val,split_dataset\val\testicular cancer\stage-4\s4 (5).png,Testicular Cancer,Stage-4,98.13
